@@ -1,0 +1,110 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage[justification=centering]{caption}
+\usepackage{enumitem} % lists without bullets
+%\usepackage{subcaption}
+%\usepackage{graphicx}
+%\usepackage{fancybox}
+%\usepackage[dvipsnames,svgnames]{xcolor}
+%\usepackage{nicematrix}
+%\usepackage{tikz}
+%\usetikzlibrary{fit}
+%\usepackage{changepage}
+\parindent 0ex
+\usepackage[english]{babel}
+
+\usepackage[dvipsnames]{xcolor}
+
+% new commands
+\newcommand{\svs}{\vspace{9pt}}
+\newcommand{\mvs}{\vspace{27pt}}
+\newcommand{\bvs}{\vspace{47pt}}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+
+
+
+\usepackage{footnotebackref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Maroon,
+    urlcolor=Maroon}
+%\usepackage{tcolorbox}
+
+% references
+\usepackage[backend=biber,style=authoryear,citetracker=true,natbib=true]{biblatex}
+\usepackage[toc,page]{appendix}
+\addbibresource{./references.bib}
+
+% header
+\author{Esteve Nathan, Fattouhy Mohamed, Nguyen Louis, Vernay Amélie}
+\title{%
+    \begin{minipage}\linewidth
+        \centering
+        Image denoising with multi-layer perceptrons
+        \vskip3pt
+        \large 
+        HAX907X - Apprentissage statistique
+        %\vskip3pt
+        %Report
+    \end{minipage}
+}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This article\cite{TODO} aims to learn the mapping from a noisy image to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image patches are then combined into a denoised image.
+
+\svs
+
+Images are invariably corrupted by some degree of noise, which strength and type depends on the imaging process. Image denoising seeks to find a clean image given only its noisy version.
+
+\svs
+
+Its complexity requires to split the image into possibly overlapping patches, denoised separately.
+
+\svs
+
+However, the size of the patches affect the modelling of the denoising function and the denoising results.
+
+\svs
+
+Among the numerous existing types of noise, we will mainly focus on additive white and Gaussian-distributed noise with known variance (AWG noise), but the method can also adapted to mixed Poisson-Gaussian noise, JPEG artifacts, salt and pepper noise and noise that resembles stripes.
+
+
+\section{Multi-layer perceptron}
+
+In a perceptron, each neuron of a hidden layer is connected to every neuron of the previous and next layers.
+
+\svs
+
+Expliquer les MLP et ajouter une phrase qui dit que dans la mesure où ce sont des matrix-verctor product c'est parallélisable et GPU...
+
+% -----------------------------------------------------
+\begin{thebibliography}{8}
+
+\svs
+
+\bibitem{denoise} 
+\href{https://arxiv.org/abs/1211.1544}{Christopher \textsc{Harold}, Christian J. \textsc{Schuler}, Stefan \textsc{Harmeling}. \emph{Image denoising with multi-layer perceptrons, part 1: comparison with existing algorithms and with bounds}, Journal of Machine Learning Research (2012)}
+
+
+\end{thebibliography}
+
+\end{document}
