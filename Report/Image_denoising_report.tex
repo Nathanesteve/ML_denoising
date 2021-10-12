@@ -44,7 +44,8 @@
 %\usepackage{tcolorbox}
 
 % references
-\usepackage[backend=biber,style=authoryear,citetracker=true,natbib=true]{biblatex}
+\usepackage[backend=biber, citetracker=true, natbib=true]{biblatex}
+%\usepackage[backend=biber,style=alphabetic,citetracker=true,natbib=true]{biblatex}
 \usepackage[toc,page]{appendix}
 \addbibresource{./references.bib}
 
@@ -69,7 +70,7 @@
 
 \section{Introduction}
 
-This article\cite{TODO} aims to learn the mapping from a noisy image to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image patches are then combined into a denoised image.
+This article \cite{denoise} aims to learn the mapping from a noisy image to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
 
 \svs
 
@@ -81,7 +82,7 @@ Its complexity requires to split the image into possibly overlapping patches, de
 
 \svs
 
-However, the size of the patches affect the modelling of the denoising function and the denoising results.
+However, the size of the patches affect the quality of the denoising function : large patches potentially lead to better result, but the function might be difficult to model.
 
 \svs
 
@@ -97,14 +98,43 @@ In a perceptron, each neuron of a hidden layer is connected to every neuron of t
 Expliquer les MLP et ajouter une phrase qui dit que dans la mesure où ce sont des matrix-verctor product c'est parallélisable et GPU...
 
 % -----------------------------------------------------
-\begin{thebibliography}{8}
+
+
+
+\section{Adaptation du MLP au denoising}
+
+
+To use an MLP for image denoising, they estimate the parameters by training on pairs of noisy and clean image patches using stochastic gradient descent. 
+
 
 \svs
 
-\bibitem{denoise} 
-\href{https://arxiv.org/abs/1211.1544}{Christopher \textsc{Harold}, Christian J. \textsc{Schuler}, Stefan \textsc{Harmeling}. \emph{Image denoising with multi-layer perceptrons, part 1: comparison with existing algorithms and with bounds}, Journal of Machine Learning Research (2012)}
+To make it efficient, they normalize the data and initialize the weights, which are sampled from an uniform distribution. Those two steps ensure that all parts of the sigmoid function are reached.
+
+\svs
+
+% Expliquer "stochastic gradient descent" (voir tp charlier)
+Furthermore, to keep a steady learning rate while modifying the number of hidden units per layer $N$, they divide it by $N$ in each layer.
+
+\svs
+
+The number of hidden layers as well as $N$, determine the capacity of the model. In pratice, it's often better to use a lot of hidden layers with few hidden units each.
+
+\svs
+
+\section{Plan d'experience}
+
+All experiments are performed on grey-image images, but the MLPs could also be trained on color images. They used images from the imagenet dataset and they performed no pre-processing, but the transform to grey-scale on the training images, which belong to six different datasets.
+
+\svs 
+
+To evaluate their approche, they mainly focused on a standard test dataset, $standard\ test\ images$, and AWG noise with $\sigma=25$. However, they show results for others noise levels, other types of noise and other image sets, to compare the performances of methods.
+
+% 4 autres algo.
+
+% Cout/GPU/BM3D
 
 
-\end{thebibliography}
+\printbibliography
 
 \end{document}
