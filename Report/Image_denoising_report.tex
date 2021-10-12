@@ -91,9 +91,18 @@ Among the numerous existing types of noise, we will mainly focus on additive whi
 
 \section{Multi-layer perceptron}
 
-In a perceptron, each neuron of a hidden layer is connected to every neuron of the previous and next layers.
+A multi-layer perceptron is a particular architecture of neural network. In this architecture we have many hidden layers, and each neuron of a hidden layer is connected to every neuron of the previous and the next ones.  In addition, weights are used to weight the signals between neurons. So with this kind of neural network, the weight matrix might be dense.
+
+% The calculations with this kind of matrices requires therefore great capacity of calculations. (transiton...)
+
+\svs 
+
+The computationally most intensive operations in an MLP are the matrix-vector multiplications. So for their experiments they used Graphics Processing Units (GPUs) rather than Central Processing Units (CPUs), because of their ability to efficiently parallelize operations.
+
 
 \svs
+
+
 
 Expliquer les MLP et ajouter une phrase qui dit que dans la mesure où ce sont des matrix-verctor product c'est parallélisable et GPU...
 
