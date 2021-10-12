@@ -70,7 +70,7 @@
 
 \section{Introduction}
 
-This article \cite{denoise} aims to learn the mapping from a noisy image to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
+The article we worked on \cite{denoise} aims to learn the mapping from a noisy image to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
 
 \svs
 
@@ -104,13 +104,13 @@ The computationally most intensive operations in an MLP are the matrix-vector mu
 
 
 
-Expliquer les MLP et ajouter une phrase qui dit que dans la mesure où ce sont des matrix-verctor product c'est parallélisable et GPU...
+%Expliquer les MLP et ajouter une phrase qui dit que dans la mesure où ce sont des matrix-verctor product c'est parallélisable et GPU...
 
 % -----------------------------------------------------
 
 
 
-\section{Adaptation du MLP au denoising}
+\section{MLP for image denoising}
 
 
 To use an MLP for image denoising, they estimate the parameters by training on pairs of noisy and clean image patches using stochastic gradient descent. 
@@ -123,7 +123,7 @@ To make it efficient, they normalize the data and initialize the weights, which 
 \svs
 
 % Expliquer "stochastic gradient descent" (voir tp charlier)
-Furthermore, to keep a steady learning rate while modifying the number of hidden units per layer $N$, they divide it by $N$ in each layer.
+Furthermore, to keep a steady learning rate while modifying the number $N$ of hidden units per layer, they divide it by $N$ in each layer.
 
 \svs
 
@@ -131,7 +131,7 @@ The number of hidden layers as well as $N$, determine the capacity of the model.
 
 \svs
 
-\section{Plan d'experience}
+\section{Experimental design}
 
 All experiments are performed on grey-image images, but the MLPs could also be trained on color images. They used images from the imagenet dataset and they performed no pre-processing, but the transform to grey-scale on the training images, which belong to six different datasets.
 
@@ -139,9 +139,54 @@ All experiments are performed on grey-image images, but the MLPs could also be t
 
 To evaluate their approche, they mainly focused on a standard test dataset, $standard\ test\ images$, and AWG noise with $\sigma=25$. However, they show results for others noise levels, other types of noise and other image sets, to compare the performances of methods.
 
-% 4 autres algo.
 
-% Cout/GPU/BM3D
+% Coût/GPU/BM3D
+
+
+\section{Results and comparison with existing algorithms}
+
+% Faire une sous-partie pour parler des 4 autres algo
+% Faire une sous-partie pour AWG avec sigma qui varie.
+% Faire une sous-partie avec d'autres bruits.
+
+
+\subsection{Existing algorithms}
+
+There are many algorithms to denoise an image. In order to evaluate the efficiency of their method, they compared the results obtained against four algorithms, which we will briefly describe.
+
+\svs
+
+The algorithms are the following :
+
+% Expliquer les algos.
+
+
+They choose those algorithms because they achieve good results.
+
+
+\subsection{Comparaison on AWG noise}
+
+In this section, we present results achieved with an MLP on AWG noise with $\sigma=25$.
+
+\svs 
+
+The MLP had the architecture $(39 \times 2, 3072, 3072, 2559, 2047, 17 \times 2)$, and they chose that because it delivered the best results. Furthermore, the MLP was trained for approximately $3.5 \times 10^8$ backprops.
+
+\svs 
+
+On the 11 standard test images, their approach achieves the best result on 7 of the 11 test images and is the runner-up on one image. However, their method is clearly inferior to BM3D and NLSC on images which contain a lot of regular structure but outperform KSVD on those images, even though KSVD is also an algorithm that is well-suited for these types of images. In addition, they also outperform both KSVD and EPLL on every
+image.
+
+\svs
+
+Now we compare their method to EPLL, BM3D and NLSC on the five larger test sets : $Berkeley\ BSDS500$, $Pascal\ VOC\ 2007$, $Pascal\ VOC\ 2011$, $McGill$, $ImageNet$. 
+
+Each dataset contains 500 images, giving us a total of 2500 test images.
+
+\subsection{Comparison on different noise variances}
+
+Now we present the results obtained by their approach on other noise levels. They tested four noise levels : $\sigma = 10$ (low noise), $\sigma = 50$
+(high noise), $\sigma = 75$ (very high noise) and $\sigma = 170$ (extremely high noise).
 
 
 \printbibliography
