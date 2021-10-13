@@ -127,17 +127,17 @@ Furthermore, to keep a steady learning rate while modifying the number $N$ of hi
 
 \svs
 
-The number of hidden layers as well as $N$, determine the capacity of the model. In pratice, it's often better to use a lot of hidden layers with few hidden units each.
+The number of hidden layers, as well as $N$, determine the capacity of the model. In pratice, it's often better to use a large number of hidden layers with fewer hidden units each.
 
 \svs
 
 \section{Experimental design}
 
-All experiments are performed on grey-image images, but the MLPs could also be trained on color images. They used images from the imagenet dataset and they performed no pre-processing, but the transform to grey-scale on the training images, which belong to six different datasets.
+All experiments are performed on grey-image images, but the MLPs could also be trained on color images. They used images from six different datasets, and performed no pre-processing but the transform to grey-scale on the training images.
 
 \svs 
 
-To evaluate their approche, they mainly focused on a standard test dataset, $standard\ test\ images$, and AWG noise with $\sigma=25$. However, they show results for others noise levels, other types of noise and other image sets, to compare the performances of methods.
+To evaluate their approche, they mainly focused on a standard test dataset, $standard\ test\ images$, and AWG noise with $\sigma=25$. However, they show results for others noise levels, other types of noise and other image sets, to compare the performance of different methods.
 
 
 % Coût/GPU/BM3D
@@ -152,42 +152,58 @@ To evaluate their approche, they mainly focused on a standard test dataset, $sta
 
 \subsection{Existing algorithms}
 
-There are many algorithms to denoise an image. In order to evaluate the efficiency of their method, they compared the results obtained against four algorithms, which we will briefly describe.
+Image denoising is a well-known problem, thus denoising methods are numerous and diverse. In order to evaluate the efficiency of the method, they compared the results against the following algorithms :
+
+\svs
+- BM3D is an ingeneered approach that doesn't rely on learning, and a non-local method
 
 \svs
 
-The algorithms are the following :
+- NLSC is a non-local, dictionary-based algorithm
+% non-local ?
 
-% Expliquer les algos.
+\svs
 
+Both these methods are considered the state-of-the-art in image denoising.
 
-They choose those algorithms because they achieve good results.
+\svs
 
+- EPLL is a learning-based approach, shown to be sometimes superior to BM3D
+
+\svs
+
+- KSVD is a dictionary-based algorithm that achieves better results than previous state-of-the-art methods
+
+They chose these algorithms for their comparison because they achieve excellent results, with different approaches.
 
 \subsection{Comparaison on AWG noise}
 
-In this section, we present results achieved with an MLP on AWG noise with $\sigma=25$.
+Let's present the results achieved with an MLP on AWG noise with $\sigma=25$.
 
 \svs 
 
-The MLP had the architecture $(39 \times 2, 3072, 3072, 2559, 2047, 17 \times 2)$, and they chose that because it delivered the best results. Furthermore, the MLP was trained for approximately $3.5 \times 10^8$ backprops.
+The MLP $(39 \times 2, 3072, 3072, 2559, 2047, 17 \times 2)$ delivered the best results, and was trained for approximately $3.5 \times 10^8$ backprops.
 
 \svs 
 
-On the 11 standard test images, their approach achieves the best result on 7 of the 11 test images and is the runner-up on one image. However, their method is clearly inferior to BM3D and NLSC on images which contain a lot of regular structure but outperform KSVD on those images, even though KSVD is also an algorithm that is well-suited for these types of images. In addition, they also outperform both KSVD and EPLL on every
-image.
+Out of the 11 $standard\ test\ images$, the MLP approach achieves the best result on 7 images and is the runner-up on one image.
+% runner-up ?
+Their method is clearly inferior to BM3D and NLSC on both of the images which contain a lot of regular structure. However, it outperforms KSVD on these images, even though KSVD is also an algorithm well-suited for images with regular structure. Furthermore, they also outperform both KSVD and EPLL on every image of the dataset.
 
 \svs
 
-Now we compare their method to EPLL, BM3D and NLSC on the five larger test sets : $Berkeley\ BSDS500$, $Pascal\ VOC\ 2007$, $Pascal\ VOC\ 2011$, $McGill$, $ImageNet$. 
+They now compare the MLP method to EPLL, BM3D and NLSC on the five larger test sets : $Berkeley\ BSDS500$, $Pascal\ VOC\ 2007$, $Pascal\ VOC\ 2011$, $McGill$, and $ImageNet$, with a total of 2500 test images.
 
-Each dataset contains 500 images, giving us a total of 2500 test images.
+\svs
+
+Their method outperforms EPLL on 99.5$\%$ of the 2500 images, and BM3D on 92$\%$ of it. It also outperforms NLSC on 80$\%$ of the test sets ; the initial dictionary of NLSC was trained on a subset of $Pascal\ VOC\ 2007$, which explains its good results.
 
 \subsection{Comparison on different noise variances}
 
-Now we present the results obtained by their approach on other noise levels. They tested four noise levels : $\sigma = 10$ (low noise), $\sigma = 50$
+They now present the results obtained by their approach on four other
+% marre du they faudrait trouver une strat
+noise levels : $\sigma = 10$ (low noise), $\sigma = 50$
 (high noise), $\sigma = 75$ (very high noise) and $\sigma = 170$ (extremely high noise).
-
 
 \printbibliography
 
