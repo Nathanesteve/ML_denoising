@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber Image_denoising_report"] 1634223713 "Image_denoising_report.bcf" "Image_denoising_report.bbl" "Image_denoising_report" 1634228383
+["biber Image_denoising_report"] 1634223713 "Image_denoising_report.bcf" "Image_denoising_report.bbl" "Image_denoising_report" 1634230693
   "./references.bib" 1634222919 346 10b78c339bdd39ee031f9cca7190f141 ""
-  "Image_denoising_report.bcf" 1634228383 106910 1b1285fb5ecf51d24f37a710b11b7585 "pdflatex"
+  "Image_denoising_report.bcf" 1634230692 106910 1b1285fb5ecf51d24f37a710b11b7585 "pdflatex"
   (generated)
   "Image_denoising_report.bbl"
   "Image_denoising_report.blg"
-["pdflatex"] 1634228378 "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.tex" "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.pdf" "Image_denoising_report" 1634228383
+["pdflatex"] 1634230688 "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.tex" "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.pdf" "Image_denoising_report" 1634230693
   "C:/Users/Utilisateur/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1617570580 9410312 361dfe3eb15677a78cb8db2866ef46eb ""
   "C:/Users/Utilisateur/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1634223709 82073 6e4fbd4004143d32ade97c98b4501313 ""
   "C:/Users/Utilisateur/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1254938640 2375 baa924870cfb487815765f9094cf3728 ""
@@ -160,19 +160,19 @@
   "C:/Users/Utilisateur/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575574882 9715 b051d5b493d9fe5f4bc251462d039e5f ""
   "C:/Users/Utilisateur/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Utilisateur/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1463135581 57049 34128738f682d033422ca125f82e5d62 ""
-  "Image_denoising_report.aux" 1634228383 2818 23671c30d93dd32e01c1ad2e7d0a31a7 "pdflatex"
+  "Image_denoising_report.aux" 1634230692 2818 23671c30d93dd32e01c1ad2e7d0a31a7 "pdflatex"
   "Image_denoising_report.bbl" 1634223744 2019 fa42cfa7b54fc9af8f8d9badb39d7a18 "biber Image_denoising_report"
-  "Image_denoising_report.out" 1634228383 1465 703d91d91398ed0e172c67a9c93156fb "pdflatex"
-  "Image_denoising_report.run.xml" 1634228383 2467 828b7b9fd2c888d52f4a36e624386c91 "pdflatex"
-  "Image_denoising_report.tex" 1634228378 9230 6f04895c569a2dfecceb16cb5374adda ""
-  "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.aux" 1634228383 2818 23671c30d93dd32e01c1ad2e7d0a31a7 ""
-  "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.tex" 1634228378 9230 6f04895c569a2dfecceb16cb5374adda ""
+  "Image_denoising_report.out" 1634230692 1465 703d91d91398ed0e172c67a9c93156fb "pdflatex"
+  "Image_denoising_report.run.xml" 1634230692 2467 828b7b9fd2c888d52f4a36e624386c91 "pdflatex"
+  "Image_denoising_report.tex" 1634230687 9504 1e8ee4dd5a205666ddd2436511818ecd ""
+  "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.aux" 1634230692 2818 23671c30d93dd32e01c1ad2e7d0a31a7 ""
+  "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.tex" 1634230687 9504 1e8ee4dd5a205666ddd2436511818ecd ""
   (generated)
-  "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.log"
-  "Image_denoising_report.pdf"
-  "Image_denoising_report.aux"
-  "Image_denoising_report.run.xml"
   "Image_denoising_report.bcf"
+  "Image_denoising_report.run.xml"
+  "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.log"
+  "Image_denoising_report.out"
   "Image_denoising_report.log"
   "e:/Mathématiques/Projet/ML_denoising/Report/Image_denoising_report.pdf"
-  "Image_denoising_report.out"
+  "Image_denoising_report.pdf"
+  "Image_denoising_report.aux"

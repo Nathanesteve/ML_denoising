@@ -188,7 +188,7 @@ Let's present the results achieved with an MLP on AWG noise with $\sigma=25$.
 
 \svs 
 
-The MLP $(39 \times 2, 3072, 3072, 2559, 2047, 17 \times 2)$ delivered the best results, and was trained for approximately $3.5 \times 10^8$ backprops.
+The MLP $(39 \times 2, 3072, 3072, 2559, 2047, 17 \times 2)$ delivered the best results.
 
 \svs 
 
@@ -209,7 +209,9 @@ Their method outperforms EPLL on 99.5$\%$ of the 2500 images, and BM3D on 92$\%$
 They now present the results obtained by their approach on four other
 % marre du they faudrait trouver une strat
 noise levels : $\sigma = 10$ (low noise), $\sigma = 50$
-(high noise), $\sigma = 75$ (very high noise) and $\sigma = 170$ (extremely high noise).
+(high noise), $\sigma = 75$ (very high noise) and $\sigma = 170$ (extremely high noise). \\
+Le MLP semble etre plus efficace quand $\sigma$ est elevé. En effet on observe sur la comparaison de plus de 2500 images, avec $\sigma = 75$ il surpasse les autres methodes sur plus de 97.60\% des images du data set. Pour $\sigma = 50$ c'est 95.76\% et quand $\sigma = 10$ nous obtenons de meilleur résultat sur 75\% des images.
+
 
 \printbibliography
 
