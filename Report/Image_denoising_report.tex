@@ -95,6 +95,10 @@ The SNR is obtained by the ratio of the value the pixels should have if there wa
 
 \svs
 
+The SNR can be expressed in decibel (dB) by the following transformation : $SNR \ (dB) = 20 \times log(SNR)$.
+
+\svs
+
 \section{Multi-layer perceptron}
 
 A multi-layer perceptron is a particular architecture of neural network. In this architecture we have input layer, output layer and many hidden layers, each neuron of a hidden layer is connected to every neuron of the previous and the next ones.  In addition, weights are used to weight the signals between neurons, those weights are randomly initialized, and updated by the backpropagation algorithm minimizing a loss function. With this kind of neural network, the weight matrix might be dense.
@@ -122,9 +126,13 @@ So for their experiments they used Graphics Processing Units (GPUs) rather than 
 \section{MLP for image denoising}
 
 
-To find an desoising function they use MLP, we use pairs of noisy (input) and clean image patches (output). To make it efficient, they normalize the data and initialize the weights, which are sampled from an uniform distribution. Those two steps ensure that all parts of the sigmoid function are reached. \\%Weight are randomly initialize following a uniform distribution:\\
+To find an desoising function they use a MLP, they use pairs of noisy image patch(input) and clean image patche (output). To make it efficient, they normalize the data and initialize the weights, which are sampled from an uniform distribution. Those two steps ensure that all parts of the sigmoid function are reached. \\%Weight are randomly initialize following a uniform distribution:\\
 $$w \sim [-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}} ]$$ \\
-Where $n_j$ are the number of neurons in the input side and output side of the layer. To optimised this weight they use the stochastic gardient descent apply to our loss function. The loss function is defined as the mean squared error between $f(x)$ the denoised patch and $y$ the clean patch. With this choise of loss function we maximise the PSNR values. %The number of hiden layers and their size are: (inserer les tailles)
+Where $n_j$ are the number of neurons in the input side and output side of the layer. To optimised those weights, they use the stochastic gardient descent, apply to our loss function.
+
+\svs
+
+The loss function is defined as the mean squared error between $f(x)$ (denoised patch) and $y$ (clean patch). With this choise of loss function, we maximise the PSNR values. %The number of hiden layers and their size are: (inserer les tailles)
 
 
 \svs
