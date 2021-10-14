@@ -67,7 +67,7 @@
 \begin{document}
 
 \maketitle
-
+% Dans l'intro il faut parler du PSNR qui sera notre valeur pour determiner si on a fait un "bon denoising" ?
 \section{Introduction}
 
 The article we worked on \cite{denoise} aims to learn the mapping from a noisy image to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
@@ -91,7 +91,7 @@ Among the numerous existing types of noise, we will mainly focus on additive whi
 
 \section{Multi-layer perceptron}
 
-A multi-layer perceptron is a particular architecture of neural network. In this architecture we have many hidden layers, and each neuron of a hidden layer is connected to every neuron of the previous and the next ones.  In addition, weights are used to weight the signals between neurons. So with this kind of neural network, the weight matrix might be dense.
+A multi-layer perceptron is a particular architecture of neural network. In this architecture we have input layer, output layer and many hidden layers, each neuron of a hidden layer is connected to every neuron of the previous and the next ones.  In addition, weights are used to weight the signals between neurons. They are randomly initialized and updated by the backpropagation algorithm minimizing a loss function. So with this kind of neural network, the weight matrix might be dense.
 
 % The calculations with this kind of matrices requires therefore great capacity of calculations. (transiton...)
 
@@ -113,17 +113,18 @@ The computationally most intensive operations in an MLP are the matrix-vector mu
 \section{MLP for image denoising}
 
 
-To use an MLP for image denoising, they estimate the parameters by training on pairs of noisy and clean image patches using stochastic gradient descent. 
+To find an desoising function they use MLP, we use pairs of noisy (input) and clean image patches (output). To make it efficient, they normalize the data and initialize the weights, which are sampled from an uniform distribution. Those two steps ensure that all parts of the sigmoid function are reached. \\%Weight are randomly initialize following a uniform distribution:\\
+$$w \sim [-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}} ]$$ \\
+Where $n_j$ are the number of neurons in the input side and output side of the layer. To optimised this weight they use the stochastic gardient descent apply to our loss function. The loss function is defined as the mean squared error between $f(x)$ the denoised patch and $y$ the clean patch. With this choise of loss function we maximise the PSNR values. %The number of hiden layers and their size are: (inserer les tailles)
 
 
 \svs
 
-To make it efficient, they normalize the data and initialize the weights, which are sampled from an uniform distribution. Those two steps ensure that all parts of the sigmoid function are reached.
 
 \svs
 
 % Expliquer "stochastic gradient descent" (voir tp charlier)
-Furthermore, to keep a steady learning rate while modifying the number $N$ of hidden units per layer, they divide it by $N$ in each layer.
+Furthermore, to keep a steady learning rate while modifying the number $N$ of hidden units per layer, they divide it by $N$ in each layer. The basic learning rate was set to 0.1. 
 
 \svs
 
