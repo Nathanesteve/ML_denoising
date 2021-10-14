@@ -126,7 +126,7 @@ So for their experiments they used Graphics Processing Units (GPUs) rather than 
 \section{MLP for image denoising}
 
 
-To find an desoising function they use a MLP, they use pairs of noisy image patch(input) and clean image patche (output). To make it efficient, they normalize the data and initialize the weights, which are sampled from an uniform distribution. Those two steps ensure that all parts of the sigmoid function are reached. \\%Weight are randomly initialize following a uniform distribution:\\
+To find an desoising function they use a MLP, they use pairs of noisy image patch(input) and clean image patch (output). To make it efficient, they normalize the data and initialize the weights, which are sampled from an uniform distribution. Those two steps ensure that all parts of the sigmoid function are reached. \\%Weight are randomly initialize following a uniform distribution:\\
 $$w \sim [-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}} ]$$ \\
 Where $n_j$ are the number of neurons in the input side and output side of the layer. To optimised those weights, they use the stochastic gardient descent, apply to our loss function.
 
