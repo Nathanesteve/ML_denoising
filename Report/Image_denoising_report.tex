@@ -131,10 +131,13 @@ Furthermore, to keep a steady learning rate while modifying the number $N$ of hi
 The number of hidden layers, as well as $N$, determine the capacity of the model. In pratice, it's often better to use a large number of hidden layers with fewer hidden units each.
 
 \svs
+After $3.5 \times 10^8$ backpropagations we obtain the denoising fonction that will be use to compare with the other method.
+
+\svs
 
 \section{Experimental design}
 
-All experiments are performed on grey-image images, but the MLPs could also be trained on color images. They used images from six different datasets, and performed no pre-processing but the transform to grey-scale on the training images.
+All experiments are performed on grey-image images, but the MLPs could also be trained on color images. They used images from six different datasets, and performed no pre-processing but the transform to grey-scale on the training images. 
 
 \svs 
 
@@ -156,11 +159,12 @@ To evaluate their approche, they mainly focused on a standard test dataset, $sta
 Image denoising is a well-known problem, thus denoising methods are numerous and diverse. In order to evaluate the efficiency of the method, they compared the results against the following algorithms :
 
 \svs
-- BM3D is an ingeneered approach that doesn't rely on learning, and a non-local method
-
+% - BM3D is an ingeneered approach that doesn't rely on learning, and a non-local method
+- \textbf{BM3D} (2007), this method does not explicitly use an image prior, it use the fact that images contain self-similarities.
 \svs
 
-- NLSC is a non-local, dictionary-based algorithm
+- \textbf{NLSC} (2010), a dictionary-based algorithm witch exploit self-similarities in image like \textbf{BM3D}
+%- NLSC is a non-local, dictionary-based algorithm
 % non-local ?
 
 \svs
@@ -169,11 +173,12 @@ Both these methods are considered the state-of-the-art in image denoising.
 
 \svs
 
-- EPLL is a learning-based approach, shown to be sometimes superior to BM3D
+- \textbf{EPLL} (2011) is a learning-based approach, shown to be sometimes superior to BM3D
 
 \svs
 
-- KSVD is a dictionary-based algorithm that achieves better results than previous state-of-the-art methods
+- \textbf{KSVD} (2006) is a dictionary method based on sparse linear combination of dictionary elements.
+%- \textbf{KSVD} (2006) is a dictionary-based algorithm that achieves better results than previous state-of-the-art methods
 
 They chose these algorithms for their comparison because they achieve excellent results, with different approaches.
 

@@ -952,6 +952,7 @@ INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfon
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
 INPUT C:\Users\Utilisateur\AppData\Local\MiKTeX\pdftex\config\pdftex.map
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
+INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx10.tfm
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri10.tfm
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmcsc10.tfm
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
@@ -968,6 +969,8 @@ INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-e
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
+INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
+INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx12.pfb
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx12.pfb
 INPUT C:\Users\Utilisateur\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmcsc10.pfb
