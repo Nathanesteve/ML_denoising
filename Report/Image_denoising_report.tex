@@ -70,7 +70,7 @@
 % Dans l'intro il faut parler du PSNR qui sera notre valeur pour determiner si on a fait un "bon denoising" ?
 \section{Introduction}
 
-The article we worked on \cite{denoise} aims to learn the mapping from a noisy image to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
+The article we worked on \cite{denoise} aims to learn the mapping from a noisy image, that is the image pixels is undergo random fluctuations, to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
 
 \svs
 
@@ -88,17 +88,26 @@ However, the size of the patches affect the quality of the denoising function : 
 
 Among the numerous existing types of noise, we will mainly focus on additive white and Gaussian-distributed noise with known variance (AWG noise), but the method can also adapted to mixed Poisson-Gaussian noise, JPEG artifacts, salt and pepper noise and noise that resembles stripes.
 
+\svs
+
+The signal-to-noise ratio (SNR) measures the quality of a signal, more precisely it measures the share of information (interpretable signal) in relation to noise (stray signal).
+The SNR is obtained by the ratio of the value the pixels should have if there was no noise, and the standard deviation of the noise.
+
+\svs
 
 \section{Multi-layer perceptron}
 
-A multi-layer perceptron is a particular architecture of neural network. In this architecture we have input layer, output layer and many hidden layers, each neuron of a hidden layer is connected to every neuron of the previous and the next ones.  In addition, weights are used to weight the signals between neurons. They are randomly initialized and updated by the backpropagation algorithm minimizing a loss function. So with this kind of neural network, the weight matrix might be dense.
+A multi-layer perceptron is a particular architecture of neural network. In this architecture we have input layer, output layer and many hidden layers, each neuron of a hidden layer is connected to every neuron of the previous and the next ones.  In addition, weights are used to weight the signals between neurons, those weights are randomly initialized, and updated by the backpropagation algorithm minimizing a loss function. With this kind of neural network, the weight matrix might be dense.
 
 % The calculations with this kind of matrices requires therefore great capacity of calculations. (transiton...)
 
 \svs 
 
-The computationally most intensive operations in an MLP are the matrix-vector multiplications. So for their experiments they used Graphics Processing Units (GPUs) rather than Central Processing Units (CPUs), because of their ability to efficiently parallelize operations.
 
+%The computationally most intensive operations in an MLP are %the matrix-vector multiplications. So for their experiments %they used Graphics Processing Units (GPUs) rather than Central %Processing Units (CPUs), because of their ability to %efficiently parallelize operations.
+
+The MLP are very expensive in calculation time during their learning phase, indeed the calibration of such a network requires a lot of algebraic calculation, more precisely matrix-vector products, and that's the computationally most intensive operations.
+So for their experiments they used Graphics Processing Units (GPUs) rather than Central Processing Units (CPUs), because of their ability to efficiently parallelize operations.
 
 \svs
 
