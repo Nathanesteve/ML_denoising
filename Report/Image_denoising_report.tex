@@ -71,6 +71,9 @@
 \section{Introduction}
 
 The article we worked on \cite{denoise} aims to learn the mapping from a noisy image, which means that the image pixels undergo random fluctuations, to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
+
+\svs
+
 Images are invariably corrupted by some degree of noise, which strength and type depends on the imaging process. Image denoising seeks to find a clean image given only its noisy version.
 
 \svs
@@ -93,7 +96,7 @@ Among the numerous existing types of noise, we will mainly focus on additive whi
 
 \section{Multi-layer perceptron}
 
-A multi-layer perceptron is a particular architecture of neural network. In this architecture we have input layer, output layer and many hidden layers, each neuron of a hidden layer being connected to every neuron of the previous and the next ones. Signals between neurons are weighted, by randomly initialized weights, updated by the backpropagation algorithm minimizing a loss function. With MLP the weight matrix might be dense.
+A multi-layer perceptron is a particular architecture of neural network. In this architecture we have input layer, output layer and many hidden layers, each neuron of a hidden layer being connected to every neuron of the previous and the next ones. Signals between neurons are weighted by randomly initialized weights, updated by the backpropagation algorithm minimizing a loss function. With MLP the weight matrix might be dense.
 
 % The calculations with this kind of matrices requires therefore great capacity of calculations. (transiton...)
 
@@ -264,13 +267,32 @@ For JPEG quantization artifacts and mixed Poisson-Gaussian noise MLP seems to be
 
 According to them, the BM3D algorithm is very close to a theoretical limit on images with a complex texture, limit that it reached on images with simple structures. However, the MLP has come close to this theoretical limit and exceeds BM3D by 0.4 db, which is not negligible.
 
-\subsection{Bayesian bound}
+\subsection{Bayesian bounds}
 
-%Plagiat !!!!!!!!!!
-Bayesian bounds Levin and Nadler (2011) is about patch-based method estimate denoising bounds in a Bayesian framework, for a given patch size. Their approach results exceed these bounds, that's beacause they use larger patches than assumed by Levin and Nadler (2011). 
+Levin and Nadler estimated bounds on how well any denoising algorithm can perform, which are dependent on the patch size.
+
+is about patch-based method estimate denoising bounds in a Bayesian framework, for a given patch size. Their approach results exceed these bounds, that's beacause they use larger patches than assumed by Levin and Nadler (2011). 
 Similar bounds estimated for infinite patch sizes are estimated by Levin et al (2012).
 
 MLPs make significant progress in achieving these bounds : their approach achieves almost half the theoretically possible gain over BM3D. Levin et al (2012) agree with Chatterjee and Milanfar (2010) that there is little room for improvement on patches with complex textures. 
+
+\section{Block-matching MLPs}
+
+Recent denoising algorithms such as BM3D and NLSC rely on block-matching procedures. The idea is to find the patches most similar to a reference patch.
+
+Knowing that block-matching procedures are effective, let's see if a combination with MLPs can achieve better results, especially images with repeating structures, on which BM3D and NLSC outperform MLPs.
+
+They train MLPs that take as input a reference patch and its nearest neighbors (similar patches).
+
+The block-matching procedure slows down the training by approximatively 2. The MLP they used has four hidden layers (4095,2047,2047,2047). Compared to BM3D, this method always select the same number of neighbors, directly in the noisy image, and has fewer hyper-parameters.
+
+\subsection{Results}
+
+The mean result achieved by the block-matching MLP on the 11 $standard\ test\ images$ is 0,07dB higher than the previous MLP (plain MLP). It outperfoms the plain MLP on 7 images, especially on images with repeating structure. However, BM3D and NLSC still provide better results on this kind of images.
+
+On larger test sets, both methods achieve quite the same results : plain MLPs perform better on images with smooth surfaces, and block-matching MLPs provide better results on images with repeating structure, whithout outperforming BM3D and NLSC.
+
+However, it's noticeable that block-matching MLPs use less information as input than plain MLPs.
 
 \section{Conclusion}
 
