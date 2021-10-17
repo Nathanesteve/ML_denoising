@@ -2,7 +2,7 @@
 *.log
 *.gz
 *.out
-*.DS_Store
+.DS_Store
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
