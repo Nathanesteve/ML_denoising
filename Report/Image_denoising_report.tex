@@ -47,6 +47,10 @@
 \usepackage[toc,page]{appendix}
 \addbibresource{./references.bib}
 
+
+
+\usepackage{notoccite}
+
 % header
 \author{Esteve Nathan, Fattouhy Mohamed, Nguyen Louis, Vernay Amélie}
 \title{%
@@ -68,7 +72,7 @@
 % Dans l'intro il faut parler du PSNR qui sera notre valeur pour determiner si on a fait un "bon denoising" ?
 \section{Introduction}
 
-The article we worked on \citep{denoise} aims to learn the mapping from a noisy image (the image pixels undergo random fluctuations), to a noise-free image directly with plain multi-layer perceptrons (MLP).
+The article we worked on \citep{denoise} aims to learn the mapping from a noisy image (image pixels undergo random fluctuations), to a noise-free image directly with plain multi-layer perceptrons (MLP).
 
 \svs
 
@@ -80,7 +84,7 @@ Its complexity requires to split the image into possibly overlapping smaller are
 
 \svs
 
-Among the numerous existing types of noise, the authors mainly focused on additive white and Gaussian-distributed noise with known variance (AWG noise), but they will show that the method can also be adapted to mixed Poisson-Gaussian noise, JPEG artifacts, salt and pepper noise and noise that resembles stripes.
+Among the numerous existing types of noise, the authors mainly focus on additive white and Gaussian-distributed noise with known variance (AWG noise), but they show that the method can also be adapted to mixed Poisson-Gaussian noise, JPEG artifacts, salt and pepper noise and noise that resembles stripes.
 
 \svs
 
@@ -114,7 +118,7 @@ where $n_j$ and $n_{j+1}$ are the number of neurons in the input and output side
 %Those steps ensure that all parts of the activation function, which is the sigmoid function, are reached.
 \svs
 
-To update those weights, they use the stochastic gardient descent, applied to our loss function, defined as the mean squared error between $f(x)$ (denoised patch) and $y$ (clean patch), minimizing pixel-wise. With this choise of loss function, we maximise the Peak Signal-To-Noise Ratio : PSNR = $20 \times \log_{10}(m/\sqrt{\mathrm{MSE}})$ (dB), where $m$ is the maximum possible pixel value of a given image. It is the ratio between the maximum possible power of a signal (interpretable signal) and the power of corrupting noise (stray signal)\footnote{\href{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}}.
+To update these weights, they use the stochastic gradient descent, applied to our loss function, defined as the mean squared error between $f(x)$ (denoised patch) and $y$ (clean patch), minimizing pixel-wise. With this choise of loss function, we maximise the Peak Signal-To-Noise Ratio : PSNR = $20 \times \log_{10}(m/\sqrt{\mathrm{MSE}})$ (dB), where $m$ is the maximum possible pixel value of a given image. It is the ratio between the maximum possible power of a signal (interpretable signal) and the power of corrupting noise (stray signal)\footnote{\href{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}}.
 
 \svs
 
@@ -161,7 +165,7 @@ Image denoising is a well-known problem, thus denoising methods are numerous and
 
 - \textbf{EPLL} is a learning-based approach, based on patch-based priors. It sometimes outperforms BM3D ;
 
-- \textbf{KSVD} is a dictionary-based method, that approximates a noisy patch by a sparse linear combination of dictionary elements. It achieves better results than previous state-of-the-art algorithms
+- \textbf{KSVD} is a dictionary-based method, that approximates a noisy patch by a sparse linear combination of dictionary elements. It achieves better results than previous state-of-the-art algorithms.
 
 \svs
 
@@ -193,22 +197,22 @@ very high noise ($\sigma = 75$) and extremely high noise ($\sigma = 170$) are pr
 
 \svs
 
-The MLP-based algorithm outperforms BM3D on $75.04\%$ of the $2500$ test images for $\sigma=10$, on $95.76\%$ of the test images fo $\sigma=50$, and it outperforms BM3D on $97.60\%$ of the image set. For very high noise, the MLP-based method outperforms all other methods. The most-performing methods for $\sigma=170$ are prior-based methods.
+The MLP-based algorithm outperforms BM3D on $75.04\%$ of the $2500$ test images for $\sigma=10$, on $95.76\%$ of the test images for $\sigma=50$, and it outperforms BM3D on $97.60\%$ of the image set. For very high noise, the MLP-based method outperforms all other methods. The most performing methods for $\sigma=170$ are prior-based methods.
 
 \svs 
 
-To know how MLP behaves on the noise levels they have been trained on, they varied $\sigma$ between $5$ and $100$ in steps of $5$.
-Results shows that MLPs achieve better results than BM3D on the noise levels they have been trained on.
+To understand how the MLP-based method behaves on the noise levels they have been trained on, they varied $\sigma$ between $5$ and $100$ in steps of $5$.
+Results show that the MLP-based approach achieves better results than BM3D on the noise levels it has been trained on.
 
 \svs
 However, for noise levels they have not been
-trained on, the MLPs performance degrades quickly.
+trained on, the MLP-based algorithm performance degrades quickly.
 
-Exceptions are the MLPs trained on $\sigma = 50$ and $\sigma = 75$, which also outperform BM3D on $\sigma = 45$ and $\sigma = 55$ (MLP was trained on $\sigma = 50$) and $\sigma = 70$ and $\sigma = 80$ (MLP trained on $\sigma = 75$).
+Exceptions are the MLP-based methods trained on $\sigma = 50$ and $\sigma = 75$, which also outperform BM3D on $\sigma = 45$ and $\sigma = 55$ (MLP trained on $\sigma = 50$) and $\sigma = 70$ and $\sigma = 80$ (MLP trained on $\sigma = 75$).
 
 \svs
 
-To conclude, the MLP-based algorithm is particularly well-suited for medium to very high noise
+To conclude, the MLP-based algorithm is particularly well-suited for high to very high noise
 levels ($\sigma \geq 50$), and still outperforms BM3D with
 $\sigma = 10$. However, MLPs have to be trained on each noise level in order to achieve good results.}
 
@@ -216,7 +220,6 @@ $\sigma = 10$. However, MLPs have to be trained on each noise level in order to 
 
 \ourparagraph{Clustering-based bounds -}{Recent denoising algorithms, especially BM3D, are very close to an inherent limit on denoising quality (estimated in \citep{deaddenoise}) for images with rich geometric structure. Yet, MLP outperforms BM3D by approximatively $0.4$ dB on this type of images, which is a significant improvement.
 
-\svs
 
 \ourparagraph{Bayesian bounds -}{Levin and Nadler \citep{Levin2011NaturalID} estimated theoretical bounds, in a Bayesian framework, on how well any denoising algorithm can perform, which depends on the patch size. The results with the MLP-based approach exceed these bounds, by using larger patches than assumed by Levin and Nadler.
 
@@ -224,13 +227,11 @@ Similar bounds for infinite patch sizes were estimated by Levin. The MLP-based a
 
 \section{Comparison on other types of noise}
 
-Most denoising algorithms assume the noise to be AWG. It is actually not always the case, and for such algorithms, a transformation needs to be applied to obtain AWG noise. However, in most cases, such transformation is impossible to find.
-
-The method with MLP enables to learn a denoising algorithm for a given noise type, if it can be simulated. The authors use the architecture that achieved good results for AWG noise.
+Most denoising algorithms assume the noise to be AWG. It is actually not always the case, and for such algorithms, a transformation needs to be applied to obtain AWG noise. However, in most cases, such transformation is impossible to find. The method with MLP enables to learn a denoising algorithm for a given noise type, if it can be simulated. The authors use the architecture that achieved good results for AWG noise.
 
 For stripe noise, the MLP-based approach outperforms BM3D on $82$ million training examples.
 
-For salt and pepper noise, the method with MLP outperforms both BM3D and median filtering, the latter being a common algorithm for denoising salt and pepper noise.
+For salt and pepper noise, the method with the MLP-based algorithm outperforms both BM3D and median filtering, the latter being a common algorithm for denoising salt and pepper noise.
 
 With regard to JPEG quantization artifacts, the MLP-based algorithm outperforms both the common method to enhance JPEG-compressed images and the state-of-the-art in JPEG deblocking.
 
