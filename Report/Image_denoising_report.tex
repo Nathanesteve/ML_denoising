@@ -1,5 +1,5 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -29,10 +29,7 @@
 \newcommand{\svs}{\vspace{9pt}}
 \newcommand{\mvs}{\vspace{27pt}}
 \newcommand{\bvs}{\vspace{47pt}}
-
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-
-
+\newcommand{\ourparagraph}[1]{\paragraph{#1}\mbox{}\}
 
 
 \usepackage{footnotebackref}
@@ -178,21 +175,14 @@ Image denoising is a well-known problem, thus denoising methods are numerous and
 \svs
 % - BM3D is an ingeneered approach that doesn't rely on learning, and a non-local method
 - \textbf{BM3D} (2007), this method does not explicitly use an image prior, it use the fact that images contain self-similarities.
-\svs
 
 - \textbf{NLSC} (2010), a dictionary-based algorithm witch exploit self-similarities in image like \textbf{BM3D}
 %- NLSC is a non-local, dictionary-based algorithm
 % non-local ?
 
-\svs
-
 Both these methods are considered the state-of-the-art in image denoising.
 
-\svs
-
 - \textbf{EPLL} (2011) is a learning-based approach, using a maximisation of likelihood of several patch.
-
-\svs
 
 - \textbf{KSVD} (2006) is a dictionary method based on sparse linear combination of dictionary elements.
 %- \textbf{KSVD} (2006) is a dictionary-based algorithm that achieves better results than previous state-of-the-art methods
@@ -267,14 +257,12 @@ For JPEG quantization artifacts and mixed Poisson-Gaussian noise MLP seems to be
 
 According to them, the BM3D algorithm is very close to a theoretical limit on images with a complex texture, limit that it reached on images with simple structures. However, the MLP has come close to this theoretical limit and exceeds BM3D by 0.4 db, which is not negligible.
 
-\subsection{Bayesian bounds}
-
-Levin and Nadler estimated bounds on how well any denoising algorithm can perform, which are dependent on the patch size.
+\ourparagraph{Bayesian bounds}{Levin and Nadler estimated bounds on how well any denoising algorithm can perform, which are dependent on the patch size.
 
 is about patch-based method estimate denoising bounds in a Bayesian framework, for a given patch size. Their approach results exceed these bounds, that's beacause they use larger patches than assumed by Levin and Nadler (2011). 
 Similar bounds estimated for infinite patch sizes are estimated by Levin et al (2012).
 
-MLPs make significant progress in achieving these bounds : their approach achieves almost half the theoretically possible gain over BM3D. Levin et al (2012) agree with Chatterjee and Milanfar (2010) that there is little room for improvement on patches with complex textures. 
+MLPs make significant progress in achieving these bounds : their approach achieves almost half the theoretically possible gain over BM3D. Levin et al (2012) agree with Chatterjee and Milanfar (2010) that there is little room for improvement on patches with complex textures.}
 
 \section{Block-matching MLPs}
 
