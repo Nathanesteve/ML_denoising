@@ -255,7 +255,10 @@ However, it's noticeable that block-matching MLPs use less information as input 
 
 \section{Conclusion}
 
-Through this paper we can improve the MLP. Whether in the improvement to reach the theoretical limits, or the debriefing. Indeed, when the MLP is trained on a specific type of noise, it provides very good results on the same noise. However on some image paternity, or with low variances of other method (BM3D) seems to compete with the MLP.
+The performances of their approach, which combining MLPs and patches, depends on the noise and strucure of images. 
+On images with a lot of regular structure, MLPs achieves results that are much worse than the previous state-of-the-art.
+However, the MLPs perform very good results on images corrupting by high level of noise, especally on AWG noise, and this method was able to show that we could still get close to established theoretical barriers.
+Finally, their attempt to use MLP-based method with block-matching procedure did not provide significantly better results than the MLP.
 
 \printbibliography
 
