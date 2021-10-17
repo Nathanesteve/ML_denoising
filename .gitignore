@@ -1,8 +1,10 @@
 *.aux
 *.log
 *.gz
+*.fls
 *.out
-.DS_Store
+*.fdb_latexmk
+*.DS_Store
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
