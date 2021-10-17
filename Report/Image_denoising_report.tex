@@ -68,7 +68,7 @@
 % Dans l'intro il faut parler du PSNR qui sera notre valeur pour determiner si on a fait un "bon denoising" ?
 \section{Introduction}
 
-The article we worked on \citep{denoise} aims to learn the mapping from a noisy image, which means that the image pixels undergo random fluctuations, to a noise-free image directly with plain multi-layer perceptrons (MLP), applied to smaller areas, called patches. The denoised image is obtained by placing the denoised patches at the location of their noisy counterparts.
+The article we worked on \citep{denoise} aims to learn the mapping from a noisy image (the image pixels undergo random fluctuations), to a noise-free image directly with plain multi-layer perceptrons (MLP).
 
 \svs
 
@@ -76,25 +76,17 @@ Images are invariably corrupted by some degree of noise, which strength and type
 
 \svs
 
-Its complexity requires to split the image into possibly overlapping patches, denoised separately.
-However, the size of the patches affect the quality of the denoising function : large patches potentially lead to better result, but the function might be difficult to model.
+Its complexity requires to split the image into possibly overlapping smaller areas, called patches, denoised separately and then placed at the location of their noisy counterparts. However, the size of the patches affect the quality of the denoising function : large patches potentially lead to better result, but the function might be difficult to model.
 
 \svs
 
-Among the numerous existing types of noise, we will mainly focus on additive white and Gaussian-distributed noise with known variance (AWG noise), but the method can also adapted to mixed Poisson-Gaussian noise, JPEG artifacts, salt and pepper noise and noise that resembles stripes.
-
-\svs
-
-%Denoising quality is measured with the signal-to-noise ratio (SNR) : SNR = $\dfrac{interpretable signal}{stray signal}$,
-%where \textbf{interpretable signal} is the pixels value if there was no noise, and standard deviation of the noise.
-
-%SNR can be expressed in decibel (dB) by the following transformation : $SNR \ (dB) = 20 \times log(SNR)$.
+Among the numerous existing types of noise, the authors mainly focused on additive white and Gaussian-distributed noise with known variance (AWG noise), but they will show that the method can also be adapted to mixed Poisson-Gaussian noise, JPEG artifacts, salt and pepper noise and noise that resembles stripes.
 
 \svs
 
 %\section{Multi-layer perceptron}
 
-% The calculations with this kind of matrices requires therefore great capacity of calculations. (transiton...)
+% The calculations with this kind of matrices requires therefore great capacity of calculations. (transition...)
 
 %The computationally most intensive operations in an MLP are %the matrix-vector multiplications. So for their experiments %they used Graphics Processing Units (GPUs) rather than Central %Processing Units (CPUs), because of their ability to %efficiently parallelize operations.
 
@@ -109,7 +101,7 @@ Among the numerous existing types of noise, we will mainly focus on additive whi
 
 \section{Multi-layer perceptron for image denoising}
 
-A multi-layer perceptron is a particular architecture of neural network. In this architecture we have input layer, output layer and many hidden layers, each neuron of a hidden layer being connected to every neuron of the previous and the next ones. Signals between neurons are weighted by randomly initialized weights, updated by the backpropagation algorithm minimizing a loss function. With MLP the weight matrix might be dense.
+A multi-layer perceptron is a particular architecture of neural network. In this architecture we have an input layer, an output layer and many hidden layers, each neuron of a hidden layer being connected to every neuron of the previous and the next ones. Signals between neurons are weighted by randomly initialized weights, updated by backpropagation to compute the gradient of a loss function. With MLP the weight matrix might be dense.
 
 \svs
 
