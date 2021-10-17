@@ -168,7 +168,7 @@ Image denoising is a well-known problem, thus denoising methods are numerous and
 The authors chose these algorithms for their comparison because they manage excellent results, with different approaches.}
 
 \ourparagraph{Comparaison on AWG noise -}{
-Let us present the results obtained with MLP-based algorithm on AWG noise with $\sigma=25$.
+Let us present the results obtained with the MLP-based algorithm on AWG noise with $\sigma=25$.
 
 \svs 
 
@@ -177,7 +177,7 @@ The MLP $(39 \times 2, 3072, 3072, 2559, 2047, 17 \times 2)$ was trained for app
 \svs 
 
 Out of the 11 \textit{standard test images}, the multi-layer perceptron approach achieves the best result on 7 images.
-The method with MLP is clearly inferior to BM3D and NLSC on both of the images which contain a lot of regular structure. However, it outperforms KSVD on these images, even though KSVD is also an algorithm well-suited for images with regular structure. Furthermore, MLP-based denoising algorithm also outperforms both KSVD and EPLL on every image of the dataset.
+The method with MLP is clearly inferior to BM3D and NLSC on both of the images which contain a lot of regular structure. However, it outperforms KSVD on these images, even though KSVD is also an algorithm well-suited for images with regular structure. Furthermore, the MLP-based denoising algorithm also outperforms both KSVD and EPLL on every image of the dataset.
 
 \svs
 
@@ -185,7 +185,7 @@ They now compare the MLP-based method to EPLL, BM3D and NLSC on the five larger 
 
 \svs
 
-MLP-based method outperforms EPLL on $99.5\%$ of the $2500$ images, and BM3D on $92\%$ of it. It also outperforms NLSC on $80\%$ of the test sets ; the initial dictionary of NLSC was trained on a subset of \textit{Pascal VOC 2007}, which explains its good results.}
+The MLP-based method outperforms EPLL on $99.5\%$ of the $2500$ images, and BM3D on $92\%$ of it. It also outperforms NLSC on $80\%$ of the test sets ; the initial dictionary of NLSC was trained on a subset of \textit{Pascal VOC 2007}, which explains its good results.}
 
 \ourparagraph{Comparison on different noise variances -}{
 The results obtained by the approach with MLP on low noise ($\sigma = 10$), high noise ($\sigma = 50$),
@@ -193,7 +193,7 @@ very high noise ($\sigma = 75$) and extremely high noise ($\sigma = 170$) are pr
 
 \svs
 
-MLP-based algorithm outperforms BM3D on $75.04\%$ of the $2500$ test images for $\sigma=10$, on $95.76\%$ of the test images fo $\sigma=50$, and it outperforms BM3D on $97.60\%$ of the image set. For very high noise, MLP-based method outperforms all other methods. The most-performing methods for $\sigma=170$ are prior-based methods.
+The MLP-based algorithm outperforms BM3D on $75.04\%$ of the $2500$ test images for $\sigma=10$, on $95.76\%$ of the test images fo $\sigma=50$, and it outperforms BM3D on $97.60\%$ of the image set. For very high noise, the MLP-based method outperforms all other methods. The most-performing methods for $\sigma=170$ are prior-based methods.
 
 \svs 
 
@@ -218,9 +218,9 @@ $\sigma = 10$. However, MLPs have to be trained on each noise level in order to 
 
 \svs
 
-\ourparagraph{Bayesian bounds -}{Levin and Nadler \citep{Levin2011NaturalID} estimated theoretical bounds, in a Bayesian framework, on how well any denoising algorithm can perform, which depends on the patch size. The results with MLP-based approach exceed these bounds, by using larger patches than assumed by Levin and Nadler.
+\ourparagraph{Bayesian bounds -}{Levin and Nadler \citep{Levin2011NaturalID} estimated theoretical bounds, in a Bayesian framework, on how well any denoising algorithm can perform, which depends on the patch size. The results with the MLP-based approach exceed these bounds, by using larger patches than assumed by Levin and Nadler.
 
-Similar bounds for infinite patch sizes were estimated by Levin. MLP-based algorithm makes significant progress in reaching these bounds: their approach achieves almost half the theoretically possible gain over BM3D.}
+Similar bounds for infinite patch sizes were estimated by Levin. The MLP-based algorithm makes significant progress in reaching these bounds: their approach achieves almost half the theoretically possible gain over BM3D.}
 
 \section{Comparison on other types of noise}
 
@@ -228,37 +228,56 @@ Most denoising algorithms assume the noise to be AWG. It is actually not always 
 
 The method with MLP enables to learn a denoising algorithm for a given noise type, if it can be simulated. The authors use the architecture that achieved good results for AWG noise.
 
-For stripe noise, MLP-based approach outperforms BM3D on 82 million training examples.
+For stripe noise, the MLP-based approach outperforms BM3D on $82$ million training examples.
 
 For salt and pepper noise, the method with MLP outperforms both BM3D and median filtering, the latter being a common algorithm for denoising salt and pepper noise.
 
-With regard to JPEG quantization artifacts
+With regard to JPEG quantization artifacts, the MLP-based algorithm outperforms both the common method to enhance JPEG-compressed images and the state-of-the-art in JPEG deblocking.
 
-% à finir
+In photon-limited imaging, observations are usually corrupted by mixed Poisson-Gaussian noise. On this type of noise, the method considered state-of-the-art is outperformed by the MLP-based approach.
+
 
 \section{Block-matching MLPs}
 
 Recent denoising algorithms such as BM3D and NLSC rely on block-matching procedures. The idea is to find the patches most similar to a reference patch.
 
-Knowing that block-matching procedures are effective, let's see if a combination with MLP-based algorithm can achieve better results, especially images with repeating structures, on which BM3D and NLSC outperform the approach with plain MLP.
+Knowing that block-matching procedures are effective, let's see if a combination with the MLP-based algorithm can achieve better results, especially images with repeating structures, on which BM3D and NLSC outperform the approach with plain MLP.
 
 The authors train MLPs that take as input a reference patch and its nearest neighbors (similar patches).
 
-The block-matching procedure slows down the training by approximatively 2. The MLP they used has four hidden layers (4095,2047,2047,2047). Compared to BM3D, this method always select the same number of neighbors, directly in the noisy image, and has fewer hyper-parameters.
+The block-matching procedure slows down the training by approximatively $2$. The MLP they used has four hidden layers $(4095, 2047, 2047, 2047)$. Compared to BM3D, this method always select the same number of neighbors, directly in the noisy image, and has fewer hyper-parameters.
 
 \ourparagraph{Results -}{
-The mean result achieved with block-matching MLP on the $11$ \textit{standard test images} is $0,07$dB higher than the approach with plain MLP. It outperforms the plain MLP on $7$ images, especially on images with repeating structure. However, BM3D and NLSC still provide better results on this kind of images.
+The mean result achieved with block-matching MLP on the $11$ \textit{standard test images} is $0,07$ dB higher than the approach with plain MLP. It outperforms the plain MLP on $7$ images, especially on images with repeating structure. However, BM3D and NLSC still provide better results on this kind of images.
 
 On larger test sets, both methods achieve quite the same results : method with plain MLPs performs better on images with smooth surfaces, while method with block-matching MLPs provides better results on images with repeating structure, whithout outperforming BM3D and NLSC.
 
-However, it's noticeable that block-matching MLPs use less information as input than plain MLPs.}
+However, it is noticeable that block-matching MLPs use less information as input than plain MLPs.}
 
 \section{Conclusion}
 
-The performances of their approach, which combining MLPs and patches, depends on the noise and strucure of images. 
-On images with a lot of regular structure, MLPs achieves results that are much worse than the previous state-of-the-art.
-However, the MLPs perform very good results on images corrupting by high level of noise, especally on AWG noise, and this method was able to show that we could still get close to established theoretical barriers.
-Finally, their attempt to use MLP-based method with block-matching procedure did not provide significantly better results than the MLP.
+The performances of their approach, which combining MLPs and patches, depends on the noise and strucure of images. On images with a lot of regular structure, MLPs achieves results that are much worse than the previous state-of-the-art. However, the MLPs perform very good results on images corrupting by high level of noise, especally on AWG noise, and this method was able to show that we could still get close to established theoretical barriers.
+Finally, their attempt to use the MLP-based method with block-matching procedure did not provide significantly better results than the MLP.
+
+\svs
+
+The MLP-based approach manage excellent results, no matter the type of noise, especially with high levels of noise. It outperforms KSVD, NLSC, EPLL and BM3D on most of the test images. However, it achieves worst results than BM3D and NLSC on images with a lot of regular structures.
+
+\svs
+
+The results achieved by the MLP-based approach show that it is possible to significantly improve denoising quality on images with complex textures. Furthermore, it demonstrates that image priors are still useful at high noise levels. On bounds estimated for patches of infinite size, the method reaches half the theoretically possible gain over BM3D.
+
+\svs
+
+Once adapted to other types of noise, the MLP-based algorithm achives good results and even seems to be competitive with the state-of-the-art on JPEG quantization artifacts and mixed Poisson-Gaussian noise.
+
+\svs
+
+The block-matching procedure, at the cost of longer training and test time, enables to manage slightly better results, and deserves to be deepened in further researches.
+
+\svs
+
+Although the MLP-based method has a clear advantage on the other algorithms on some images, it sometimes performs much worse than BM3D and NLSC. Since the block-matching procedure has not proven its effectiveness, is it possible to find an approach that would perform state-of-the-art results on every image ? A combination of several denoising algorithms might be an answer.
 
 \printbibliography
 
