@@ -12,8 +12,6 @@
 \usetheme{Antibes}
 \usepackage{tabulary}
 
-\usepackage{tikz}
-\usetikzlibrary{arrows, automata}
 
 
 \setbeamertemplate{footline}[frame number]
@@ -49,20 +47,36 @@
 \end{frame}
 
 
-\section{Contexte}
+\section{Context}
 
-\begin{frame}
-\frametitle{Problématique de débruitage}
+\begin{frame}{Context}
+\begin{block}{Aim}
+Problematic: Mapping a noisy image (image pixels undergo random fluctuations) to a noisy-free image.
+\end{block}\
+
+\begin{block}{Existing algorithm}
+%Mettre les 5 autres algo
+\end{block}
+
+\begin{block}{}
+Suggested in the article : Using patches with a MLP-based method.
+%mettre le nom des auteurs
+\end{block}
+
+
 \end{frame}
 
-
-\section{Les bruits}
+\section{Noise}
 
 \begin{frame}
 % Mettre les images bruitées
 \end{frame}
 
-\begin{frame}
+\section{MLP-based method}
+
+
+
+\begin{frame}{MLP-based method}
 % Dessin de MLP + expliqué notion de patches (phase d'entrainement)
 
 % ----
@@ -172,48 +186,89 @@
 
 \vspace{7pt}
 
-where $x_{noisy}$ is a noisy version of a patch $x$ and $f(x_{noisy})$ represents an estimate of $x$.
+where $x_{noisy}$ is a noisy version of a clean patch $x$ and $f(x_{noisy})$ represents an estimate of $x$.
 
 \end{frame}
 
+\section{Setup}
 
 \begin{frame}
 % Expliqué INPUT/OUTPUT + POIDS W + LOSS (SNR)
+\begin{block}{Weight initialization for MLP-based method}
+Weights $w$ are sampled from an uniform distribution :  \\%Weight are randomly initialize following a uniform distribution:\\
+$$w \sim \left[-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}\right]$$ 
+\end{block}
 
+
+
+\begin{block}{Loss function}
+The loss function used is the MSE : $$MSE = \frac{1}{n} \sum_{i=1}^{n} \ (f(x_i)-x_i),$$ where $f(x)$ the estimation $x$ and $x$ is a clean patch.
+\end{block}
+
+
+\begin{block}{Peak Signal-To-Noise Ratio (PSNR)}
+PSNR = $20 \times \log_{10}\left(\dfrac{m}{\sqrt{\mathrm{MSE}}} \right)$ (dB), where $m$ is the maximum possible pixel value of a given image.
+\end{block}
 \end{frame}
 
-\begin{frame}
+\section{Results}
+
+\begin{frame}{Results for AWG noise}
+\begin{block}{Definition}
+Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. %(Source: Wiki)
 % Présentez résultats images avec AWG noise (sigma=25)
+\end{block} 
 \end{frame}
 
-\begin{frame}
+
+\begin{frame}{Other type of noise}
 % Présentez résultats images pour autres bruits (faire plusieurs slides)
 \end{frame}
 
-\begin{frame}
-% Bound
+\section{Bounds}
+
+\begin{frame}{Bounds}
+
+% TROP BANCAL
+
+\begin{block}{Clustering-based bounds}
+There exist inherent limit on denoising quality for images with rich geometric structure.
+\end{block}\
+
+\begin{block}{Bayesian framework}
+How well any denoising algorithm can perform, which depends on the patch size.
+\end{block}
+
+\end{frame}
+
+\section{Block-matching}
+\begin{frame}{Block-matching}
+\begin{block}{Block-matching}
+Idea: Find the patches most similar to a reference patch.
+\end{block}\
+
+\begin{block}{Combine MLP and block-matching}
+Train MLPs that take as input a reference patch and its nearest neighbors (similar patches).
+\end{block}\
+
+\begin{block}{Results}
+Block-matching MLPs provides better results on images with repeating structure than plain MLPs.
+
+\vspace{0.5em}
+However, BM3D and NLSC still provide better results on this kind of images.
+\end{block}
 \end{frame}
 
 
-\begin{frame}
-% Block-Matching
-\end{frame}
 
 
 
 
-
-
-\section*{}
+\section{Conclusion}
 
 \begin{frame}{Conclusion}
 \begin{block}{}
-\begin{itemize}
-\item {L'estimateur LASSO est plus performant que l'OLS lorsque le pourcentage de variables actives est faible.}
-\item {Le LASSO, appliqué à nos données génomiques, ne donne pas toujours des résultats interprétables.}
-\item {On a donc mis en place le modèle linéaire multi-réponses et l'estimateur MultiTaskLASSO.}
-\item {On a finalement appliqué le MultiTaskLASSO aux données : on a ainsi sélectionné les variables actives communes à toutes les réponses.}
-\end{itemize}
+
 \end{block}
 \end{frame}
 
