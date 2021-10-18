@@ -118,6 +118,17 @@ Image denoising requires to denoise patches separately:
 
 \end{frame}
 
+\begin{frame}
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[scale=0.45]{../datasets/images/Allnoise.png}
+            \caption{Image of Louis Augustin Cauchy with differents noises}
+        \end{center}
+    \end{figure}
+    
+\end{frame}
+
+
 \section{MLP-based method}
 
 
@@ -233,13 +244,12 @@ $x_{noisy}$ is a noisy version of a clean patch $x$; $f(x_{noisy})$ represents a
 
 \end{frame}
 
-\section{Setup}
 
 \begin{frame}
 % Expliqué INPUT/OUTPUT + POIDS W + LOSS (SNR)
 \begin{mybox}[Weight initialization for MLP-based method]
 Weights $w$ are sampled from an uniform distribution :  \\%Weight are randomly initialize following a uniform distribution:\\
-$$w \sim \left[-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}\right]$$
+$$w \sim U\left[-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}\right]$$
 
 {\footnotesize $n_j$ and $n_{j+1}$ are the number of neurons in the input and output sides of the layer.}
 %$n_j$ (resp. $n_{j+1}$) the number of neurons in the input (resp. output) side of the layer
@@ -372,7 +382,9 @@ However, BM3D and NLSC still provide better results on this kind of images.
 %\end{mybox}
 \begin{itemize}
 	\item Excellent results BUT outperformed by BM3D and NLSC on images with a lot a regular structure;
-	\item
+	\item The MLP-based approach achieves excellent results, no matter the type of noise, especially with high levels of noise.
+	\item The MLP-based approach shows that it is possible to significantly improve denoising quality on images with complex textures.
+	\item Is it possible to find an approach that would perform state-of-the-art results on every image ?
 	
 \end{itemize}
 
