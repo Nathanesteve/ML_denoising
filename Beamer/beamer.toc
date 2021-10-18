@@ -3,6 +3,6 @@
 \beamer@sectionintoc {2}{MLP-based method}{4}{0}{2}
 \beamer@sectionintoc {3}{Setup}{5}{0}{3}
 \beamer@sectionintoc {4}{Results}{6}{0}{4}
-\beamer@sectionintoc {5}{Bounds}{11}{0}{5}
-\beamer@sectionintoc {6}{Block-matching}{12}{0}{6}
-\beamer@sectionintoc {7}{Conclusion}{13}{0}{7}
+\beamer@sectionintoc {5}{Bounds}{10}{0}{5}
+\beamer@sectionintoc {6}{Block-matching}{11}{0}{6}
+\beamer@sectionintoc {7}{Conclusion}{12}{0}{7}

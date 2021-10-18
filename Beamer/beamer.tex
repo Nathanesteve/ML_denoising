@@ -1,6 +1,6 @@
 \documentclass[8pt]{beamer}
 %\usepackage[french]{babel}
-\usepackage[english]{babel}
+\usepackage[french, english]{babel}
 %\usepackage[utf8]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -84,7 +84,7 @@ title={\strut\textbf{#1}}
 
 
 \begin{frame}
-\frametitle{Table of content}
+\frametitle{Sommaire}
 \tableofcontents
 \end{frame}
 
@@ -257,67 +257,55 @@ PSNR = $20 \times \log_{10}\left(\dfrac{m}{\sqrt{\mathrm{MSE}}} \right)$ (dB), w
 \section{Results}
 
 \begin{frame}{Results for AWG noise}
-%\begin{mybox}[Definition]
-%Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. 
-%%(Source: Wiki)
-%\end{mybox} 
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=0.40]{../datasets/images/Table_dB.png}
-        %\caption{Comparaison BM3D and MLP (AWG noise $\sigma = 25 $)}
-    \end{center}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Results for AWG noise}
-%\begin{mybox}[Definition]
-%Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. 
-%%(Source: Wiki)
-%\end{mybox} 
+\begin{mybox}[Definition]
+Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. 
+%(Source: Wiki)
+\end{mybox} 
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.40]{../datasets/images/barbara.png}
-        \caption{BM3D and MLP performances (AWG noise $\sigma = 25 $)}
+        \caption{Comparaison BM3D and MLP (AWG noise $\sigma = 25 $)}
     \end{center}
 \end{figure}
+    
+
+
 
 \end{frame}
 
 
-\begin{frame}{Other types of noise}
-%We begin by Strip noise, see result of denoising with BM3D and MLP.
+\begin{frame}{Other type of noise}
+We begin by Strip noise, see result of denoising with BM3D and MLP.
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.45]{../datasets/images/stripnoise.png}
-        \caption{MLP and BM3D performances on strip noise}
+        \caption{MLP and BM3D denoising strip noise}
     \end{center}
 \end{figure}
 \end{frame}
 
 
 
-\begin{frame}{Other types of noise}
-%For Salt and pepper noise, we compare MLP with median filtering methode. This method was the stat-of-the-art for this type of noise.
+\begin{frame}{Other type of noise}
+For Salt and pepper noise, we compare MLP with median filtering methode. This method was the stat-of-the-art for this type of noise.
 \begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.45]{../datasets/images/saltandpeppernoise.png}
-        \caption{MLP and median filtering performances on salt and pepper noise}
+        \caption{MLP and median filtering denoising salt and pepper noise}
     \end{center}
 \end{figure}
 
 \end{frame}
 
-\begin{frame}{Other types of noise}
-    %For JPEG articact, we compare MLP againt the state-of-the-art. 
+\begin{frame}{Other type of noise}
+    For JPEG articact, we compare MLP againt the state-of-the-art. 
 
     \begin{figure}[H]
         \begin{center}
             \includegraphics[scale=0.45]{../datasets/images/Jpgegnoise.png}
-            \caption{MLP and median filtering performances on JPEG Artifact}
+            \caption{MLP JPEG Artifact}
         \end{center}
     \end{figure}
     
@@ -332,11 +320,11 @@ PSNR = $20 \times \log_{10}\left(\dfrac{m}{\sqrt{\mathrm{MSE}}} \right)$ (dB), w
 % TROP BANCAL
 
 \begin{mybox}[Clustering-based bounds]
-There exist inherent limits on denoising quality for images with rich geometric structure.
+There exist inherent limit on denoising quality for images with rich geometric structure.
 \end{mybox}\
 
 \begin{mybox}[Bayesian framework]
-Bayesian bounds estimate how well any denoising algorithm can perform in a bayesian framework which depends on the patch size.
+How well any denoising algorithm can perform, which depends on the patch size.
 \end{mybox}
 
 \end{frame}
@@ -344,15 +332,15 @@ Bayesian bounds estimate how well any denoising algorithm can perform in a bayes
 \section{Block-matching}
 \begin{frame}{Block-matching}
 \begin{mybox}[Block-matching]
-We look for the patches most similar to a reference patch.
+Idea: Find the patches most similar to a reference patch.
 \end{mybox}\
 
 \begin{mybox}[Combine MLP and block-matching]
-We train MLPs that take as input a reference patch and its nearest neighbors (similar patches).
+Train MLPs that take as input a reference patch and its nearest neighbors (similar patches).
 \end{mybox}\
 
 \begin{mybox}[Results]
-Block-matching MLPs provide better results on images with repeating structure than plain MLPs.
+Block-matching MLPs provides better results on images with repeating structure than plain MLPs.
 
 \vspace{0.5em}
 However, BM3D and NLSC still provide better results on this kind of images.
@@ -367,15 +355,9 @@ However, BM3D and NLSC still provide better results on this kind of images.
 \section{Conclusion}
 
 \begin{frame}{Conclusion}
-%\begin{mybox}{}
-%
-%\end{mybox}
-\begin{itemize}
-	\item Excellent results BUT outperformed by BM3D and NLSC on images with a lot a regular structure;
-	\item
-	
-\end{itemize}
+\begin{block}{}
 
+\end{block}
 \end{frame}
 
 
