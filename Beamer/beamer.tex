@@ -1,6 +1,6 @@
 \documentclass[8pt]{beamer}
 %\usepackage[french]{babel}
-\usepackage[french, english]{babel}
+\usepackage[english]{babel}
 %\usepackage[utf8]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -40,7 +40,7 @@ coltitle=black,
 colframe=black,
 boxrule=1pt,
 titlerule=0pt,
-arc=15pt,
+arc=10pt,
 title={\strut\textbf{#1}}
 }
 
@@ -84,7 +84,7 @@ title={\strut\textbf{#1}}
 
 
 \begin{frame}
-\frametitle{Sommaire}
+\frametitle{Table of content}
 \tableofcontents
 \end{frame}
 
@@ -117,6 +117,17 @@ Image denoising requires to denoise patches separately:
 
 
 \end{frame}
+
+\begin{frame}
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[scale=0.45]{../datasets/images/Allnoise.png}
+            \caption{Image of Louis Augustin Cauchy with differents noises}
+        \end{center}
+    \end{figure}
+    
+\end{frame}
+
 
 \section{MLP-based method}
 
@@ -233,20 +244,19 @@ $x_{noisy}$ is a noisy version of a clean patch $x$; $f(x_{noisy})$ represents a
 
 \end{frame}
 
-\section{Setup}
 
 \begin{frame}
 % Expliqué INPUT/OUTPUT + POIDS W + LOSS (SNR)
 \begin{mybox}[Weight initialization for MLP-based method]
 Weights $w$ are sampled from an uniform distribution :  \\%Weight are randomly initialize following a uniform distribution:\\
-$$w \sim \left[-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}\right]$$
+$$w \sim U\left[-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}\right]$$
 
 {\footnotesize $n_j$ and $n_{j+1}$ are the number of neurons in the input and output sides of the layer.}
 %$n_j$ (resp. $n_{j+1}$) the number of neurons in the input (resp. output) side of the layer
 \end{mybox}
 
 \begin{mybox}[Loss function]
-The loss function used is the MSE : $$MSE = \frac{1}{n} \sum_{i=1}^{n} \ (f(x_i)-x_i)^2,$$ where $f(x)$ the estimation $x$ and $x$ is a clean patch.
+The loss function used is the MSE : $$MSE = \frac{1}{n} \sum_{i=1}^{n} \ (f(x_i)-x_i)^2,$$ where $x$ is a clean patch and $f(x)$ the estimation of $x$.
 \end{mybox}
 
 \begin{mybox}[Peak Signal-To-Noise Ratio (PSNR)]
@@ -257,90 +267,97 @@ PSNR = $20 \times \log_{10}\left(\dfrac{m}{\sqrt{\mathrm{MSE}}} \right)$ (dB), w
 \section{Results}
 
 \begin{frame}{Results for AWG noise}
-\begin{mybox}[Definition]
-Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. 
-%(Source: Wiki)
-\end{mybox} 
+%\begin{mybox}[Definition]
+%Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. 
+%%(Source: Wiki)
+%\end{mybox} 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.40]{../datasets/images/Table_dB.png}
+        %\caption{Comparaison BM3D and MLP (AWG noise $\sigma = 25 $)}
+    \end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Results for AWG noise}
+%\begin{mybox}[Definition]
+%Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. 
+%%(Source: Wiki)
+%\end{mybox} 
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[scale=0.40]{../datasets/images/barbara.png}
-        \caption{Comparaison BM3D and MLP (AWG noise $\sigma = 25 $)}
-    \end{center}
-\end{figure}
-    
-
-
-
-\end{frame}
-
-
-\begin{frame}{Other type of noise}
-We begin by Strip noise, see result of denoising with BM3D and MLP.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=0.45]{../datasets/images/stripnoise.png}
-        \caption{MLP and BM3D denoising strip noise}
-    \end{center}
-\end{figure}
-\end{frame}
-
-
-
-\begin{frame}{Other type of noise}
-For Salt and pepper noise, we compare MLP with median filtering methode. This method was the stat-of-the-art for this type of noise.
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=0.45]{../datasets/images/saltandpeppernoise.png}
-        \caption{MLP and median filtering denoising salt and pepper noise}
+        \caption{BM3D and MLP performances (AWG noise $\sigma = 25 $)}
     \end{center}
 \end{figure}
 
 \end{frame}
-
-\begin{frame}{Other type of noise}
-    For JPEG articact, we compare MLP againt the state-of-the-art. 
-
-    \begin{figure}[H]
-        \begin{center}
-            \includegraphics[scale=0.45]{../datasets/images/Jpgegnoise.png}
-            \caption{MLP JPEG Artifact}
-        \end{center}
-    \end{figure}
-    
-    \end{frame}
-
-
 
 \section{Bounds}
 
 \begin{frame}{Bounds}
 
-% TROP BANCAL
-
 \begin{mybox}[Clustering-based bounds]
-There exist inherent limit on denoising quality for images with rich geometric structure.
+There exist inherent limits on denoising quality for images with rich geometric structure.
 \end{mybox}\
 
 \begin{mybox}[Bayesian framework]
-How well any denoising algorithm can perform, which depends on the patch size.
+Bayesian bounds estimate how well any denoising algorithm can perform in a bayesian framework which depends on the patch size.
 \end{mybox}
 
+\end{frame}
+
+\begin{frame}{Other types of noise}
+%We begin by Strip noise, see result of denoising with BM3D and MLP.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.45]{../datasets/images/stripnoise.png}
+        \caption{MLP and BM3D performances on strip noise}
+    \end{center}
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Other types of noise}
+%For Salt and pepper noise, we compare MLP with median filtering methode. This method was the stat-of-the-art for this type of noise.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.45]{../datasets/images/saltandpeppernoise.png}
+        \caption{MLP and median filtering performances on salt and pepper noise}
+    \end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Other types of noise}
+    %For JPEG articact, we compare MLP againt the state-of-the-art. 
+
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[scale=0.45]{../datasets/images/Jpgegnoise.png}
+            \caption{MLP and median filtering performances on JPEG Artifact}
+        \end{center}
+    \end{figure}
+    
 \end{frame}
 
 \section{Block-matching}
 \begin{frame}{Block-matching}
 \begin{mybox}[Block-matching]
-Idea: Find the patches most similar to a reference patch.
+We look for the patches most similar to a reference patch.
 \end{mybox}\
 
 \begin{mybox}[Combine MLP and block-matching]
-Train MLPs that take as input a reference patch and its nearest neighbors (similar patches).
+We train MLPs that take as input a reference patch and its nearest neighbors (similar patches).
 \end{mybox}\
 
 \begin{mybox}[Results]
-Block-matching MLPs provides better results on images with repeating structure than plain MLPs.
+Block-matching MLPs provide better results on images with repeating structure than plain MLPs.
 
 \vspace{0.5em}
 However, BM3D and NLSC still provide better results on this kind of images.
@@ -355,9 +372,17 @@ However, BM3D and NLSC still provide better results on this kind of images.
 \section{Conclusion}
 
 \begin{frame}{Conclusion}
-\begin{block}{}
+%\begin{mybox}{}
+%
+%\end{mybox}
+\begin{itemize}
+	\item Excellent results BUT outperformed by BM3D and NLSC on images with a lot a regular structure.
+	\item The MLP-based approach achieves excellent results, no matter the type of noise, especially with high levels of noise.
+	\item The MLP-based approach shows that it is possible to significantly improve denoising quality on images with complex textures.
+	\item Would it be possible to find an approach that would perform state-of-the-art results on every image ?
+	
+\end{itemize}
 
-\end{block}
 \end{frame}
 
 
