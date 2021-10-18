@@ -1,0 +1,3 @@
+\babel@toc {french}{}
+\beamer@sectionintoc {1}{Contexte}{3}{0}{1}
+\beamer@sectionintoc {2}{Les bruits}{5}{0}{2}

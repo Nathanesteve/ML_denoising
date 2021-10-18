@@ -1,0 +1,108 @@
+\documentclass[8pt]{beamer}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[titlenumbered,ruled,noend,french,onelanguage,linesnumbered]{algorithm2e}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usetheme{Antibes}
+\usepackage{tabulary}
+
+
+
+\setbeamertemplate{footline}[frame number]
+
+\title{Débruitage d'image par l'utilisation d'un perceptron multi-couches}
+\author{VERNAY Amélie \\ FATTOUHY Mohamed \\ ESTEVE Nathan \\ NGUYEN Louis}
+
+\titlegraphic{\includegraphics[width=2.5cm,height=2.5cm]{../datasets/images/Logo_FDS.png}}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Sommaire}
+\tableofcontents
+\end{frame}
+
+
+\section{Contexte}
+
+\begin{frame}
+\frametitle{Problématique de débruitage}
+\end{frame}
+
+
+\section{Les bruits}
+
+\begin{frame}
+% Mettre les images bruitées
+\end{frame}
+
+\begin{frame}
+% Dessin de MLP + expliqué notion de patches (phase d'entrainement)
+\end{frame}
+
+
+\begin{frame}
+% Expliqué INPUT/OUTPUT + POIDS W + LOSS (SNR)
+\end{frame}
+
+\begin{frame}
+% Présentez résultats images avec AWG noise (sigma=25)
+\end{frame}
+
+\begin{frame}
+% Présentez résultats images pour autres bruits (faire plusieurs slides)
+\end{frame}
+
+\begin{frame}
+% Bound
+\end{frame}
+
+
+\begin{frame}
+% Block-Matching
+\end{frame}
+
+
+
+
+
+
+\section*{}
+
+\begin{frame}{Conclusion}
+\begin{block}{}
+\begin{itemize}
+\item {L'estimateur LASSO est plus performant que l'OLS lorsque le pourcentage de variables actives est faible.}
+\item {Le LASSO, appliqué à nos données génomiques, ne donne pas toujours des résultats interprétables.}
+\item {On a donc mis en place le modèle linéaire multi-réponses et l'estimateur MultiTaskLASSO.}
+\item {On a finalement appliqué le MultiTaskLASSO aux données : on a ainsi sélectionné les variables actives communes à toutes les réponses.}
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\end{document}

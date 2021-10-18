@@ -72,7 +72,7 @@
 % Dans l'intro il faut parler du PSNR qui sera notre valeur pour determiner si on a fait un "bon denoising" ?
 \section{Introduction}
 
-The article we worked on \citep{denoise} aims to learn the mapping from a noisy image (image pixels undergo random fluctuations), to a noise-free image directly with plain multi-layer perceptrons (MLP).
+The article we worked on, \emph{Image denoising with multi-layer perceptrons, part 1: comparison with existing algorithms and with bounds}, H. C. Burger, C. J. Schuler, S. Harmeling (2012) \citep{denoise}, aims to learn the mapping from a noisy image (image pixels undergo random fluctuations), to a noise-free image directly with plain multi-layer perceptrons (MLP).
 
 \svs
 
@@ -281,5 +281,13 @@ The block-matching procedure, at the cost of longer training and test time, enab
 Although the MLP-based method has a clear advantage on the other algorithms on some images, it sometimes performs much worse than BM3D and NLSC. Since the block-matching procedure has not proven its effectiveness, is it possible to find an approach that would perform state-of-the-art results on every image ? A combination of several denoising algorithms might be an answer.
 
 \printbibliography
+
+\mvs
+
+\textbf{Link to our github repository}
+\svs
+
+\href{https://github.com/Nathanesteve/ML\_denoising}{https://github.com/Nathanesteve/ML\_denoising}
+
 
 \end{document}
