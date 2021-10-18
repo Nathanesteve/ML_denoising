@@ -7,6 +7,7 @@
 \usepackage[titlenumbered,ruled,noend,french,onelanguage,linesnumbered]{algorithm2e}
 \usepackage{tikz}
 \usepackage{graphicx}
+%\usepackage[dvipsnames, svgnames]{xcolor}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{caption}
@@ -16,7 +17,7 @@
 \usepackage{tabulary}
 
 \usepackage{tcolorbox}
-
+\definecolor{goldenrod}{RGB}{238,232,170}
 %\newtcolorbox{mytitlebox}[1]{
 %colback=white,
 %%colbacktitle=black!10!,
@@ -167,7 +168,7 @@ A multi-layer perceptron is a fully connected neural network.
 % Input Layer
 \foreach \i in {1,...,\inputnum}
 {
-    \node[circle, minimum size = 6mm, fill = orange!30] (Input-\i) at (0,-\i) {};
+    \node[circle, minimum size = 6mm, fill = orange!40] (Input-\i) at (0,-\i) {};
 }
  
 % Hidden Layer
@@ -185,7 +186,7 @@ A multi-layer perceptron is a fully connected neural network.
 % Output Layer
 \foreach \i in {1,...,\outputnum}
 {
-    \node[circle, minimum size = 6mm, fill = purple!50, yshift = (\outputnum-\inputnum)*5 mm] (Output-\i) at (7.5,-\i) {};
+    \node[circle, minimum size = 6mm, fill = brown!80, yshift = (\outputnum-\inputnum)*5 mm] (Output-\i) at (7.5,-\i) {};
 }
  
 % Connect neurons In-Hidden
