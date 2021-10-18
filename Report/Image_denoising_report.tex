@@ -80,7 +80,7 @@ Images are invariably corrupted by some degree of noise, which strength and type
 
 \svs
 
-Its complexity requires to split the image into possibly overlapping smaller areas, called patches, denoised separately and then placed at the location of their noisy counterparts. However, the size of the patches affect the quality of the denoising function : large patches potentially lead to better result, but the function might be difficult to model.
+Its complexity requires to split the image into possibly overlapping smaller areas, called patches, denoised separately and then placed at the location of their noisy counterparts. However, the size of the patches affect the quality of the denoising function : large patches potentially lead to better results, but the function might be difficult to model.
 
 \svs
 
@@ -110,7 +110,7 @@ A multi-layer perceptron is a particular architecture of neural network. In this
 \svs
 
 To find a denoising function with MLP, the authors use pairs of noisy image patch (input) and clean image patch (output). To make it efficient, the data is normalized and the weights $w$ sampled from an uniform distribution :  \\%Weight are randomly initialize following a uniform distribution:\\
-$$w \sim \left[-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}\right]$$ 
+$$w \sim \mathcal{U}\left[-\frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}, \frac{\sqrt{6}}{\sqrt{n_j + n_{j+1}}}\right]$$ 
 
 \svs
 where $n_j$ and $n_{j+1}$ are the number of neurons in the input and output sides of the layer, respectively.
@@ -118,7 +118,7 @@ where $n_j$ and $n_{j+1}$ are the number of neurons in the input and output side
 %Those steps ensure that all parts of the activation function, which is the sigmoid function, are reached.
 \svs
 
-To update these weights, they use the stochastic gradient descent, applied to our loss function, defined as the mean squared error between $f(x)$ (denoised patch) and $y$ (clean patch), minimizing pixel-wise. With this choise of loss function, we maximise the Peak Signal-To-Noise Ratio : PSNR = $20 \times \log_{10}(m/\sqrt{\mathrm{MSE}})$ (dB), where $m$ is the maximum possible pixel value of a given image. It is the ratio between the maximum possible power of a signal (interpretable signal) and the power of corrupting noise (stray signal)\footnote{\href{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}}.
+To update these weights, they use the stochastic gradient descent, applied to the loss function defined as the mean squared error between $f(x)$ (denoised patch) and $y$ (clean patch), minimizing pixel-wise. With this choice of loss function, they maximise the Peak Signal-To-Noise Ratio : PSNR = $20 \times \log_{10}(m/\sqrt{\mathrm{MSE}})$ (dB), where $m$ is the maximum possible pixel value of a given image. It is the ratio between the maximum possible power of a signal (interpretable signal) and the power of corrupting noise (stray signal)\footnote{\href{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}{https://en.wikipedia.org/wiki/Peak\_signal-to-noise\_ratio}}.
 
 \svs
 
@@ -127,7 +127,7 @@ Furthermore, to keep a steady learning rate while modifying the number $N$ of un
 
 \svs
 
-The number of hidden layers, as well as $N$, determine the capacity of the model. In pratice, it's often better to use a large number of hidden layers with fewer hidden units each.
+The number of hidden layers, as well as $N$, determine the capacity of the model. In pratice, it is often better to use a large number of hidden layers with fewer hidden units each.
 
 \svs
 
@@ -135,7 +135,7 @@ All experiments are performed on grey-image images, but the MLPs could also be t
 
 \svs 
 
-For each type of noise and each noise level, an MLP is trained. This allows us to obtain a
+For each type of noise and each noise level, an MLP is trained. This allows them to obtain a
 denoising function for each configuration.
 Once the MLP's training is done, the authors compare the results obtained with other denoising methods.
 
@@ -159,11 +159,11 @@ Image denoising is a well-known problem, thus denoising methods are numerous and
 
 \svs
 
-- \textbf{BM3D} does not explicitly use an image prior, but rather the fact that images often contain self-similarities. It's considered the state-of-the-art in image denoising ;
+- \textbf{BM3D} does not explicitly use an image prior, but rather the fact that images often contain self-similarities. It is considered the state-of-the-art in image denoising ;
 
 - \textbf{NLSC} is a dictionary-based algorithm that exploits images self-similarities like BM3D, also achieving excellent results ;
 
-- \textbf{EPLL} is a learning-based approach, based on patch-based priors. It sometimes outperforms BM3D ;
+- \textbf{EPLL} is a learning-based approach, based on patch-based priors. It sometimes outperforms BM3D;
 
 - \textbf{KSVD} is a dictionary-based method, that approximates a noisy patch by a sparse linear combination of dictionary elements. It achieves better results than previous state-of-the-art algorithms.
 
@@ -223,7 +223,7 @@ $\sigma = 10$. However, MLPs have to be trained on each noise level in order to 
 
 \ourparagraph{Bayesian bounds -}{Levin and Nadler \citep{Levin2011NaturalID} estimated theoretical bounds, in a Bayesian framework, on how well any denoising algorithm can perform, which depends on the patch size. The results with the MLP-based approach exceed these bounds, by using larger patches than assumed by Levin and Nadler.
 
-Similar bounds for infinite patch sizes were estimated by Levin. The MLP-based algorithm makes significant progress in reaching these bounds: their approach achieves almost half the theoretically possible gain over BM3D.}
+Similar bounds for infinite patch sizes were estimated by Levin. The MLP-based algorithm makes significant progress in reaching these bounds: it achieves almost half the theoretically possible gain over BM3D.}
 
 \section{Comparison on other types of noise}
 
@@ -257,20 +257,20 @@ However, it is noticeable that block-matching MLPs use less information as input
 
 \section{Conclusion}
 
-The performances of their approach, which combining MLPs and patches, depends on the noise and strucure of images. On images with a lot of regular structure, MLPs achieves results that are much worse than the previous state-of-the-art. However, the MLPs perform very good results on images corrupting by high level of noise, especally on AWG noise, and this method was able to show that we could still get close to established theoretical barriers.
-Finally, their attempt to use the MLP-based method with block-matching procedure did not provide significantly better results than the MLP.
+The performances of the MLP-based approach, which combines MLPs and patches, depends on the noise and structure of images. On images with a lot of regular structure, the method achieves results that are much worse than the previous state-of-the-art. However, the approach with MLP achieves very good results on images corrupted by high level of noise, especially on AWG noise, and it was able to show that we could still get close to established theoretical bounds.
+Finally, the authors attempt to use the MLP-based method with block-matching procedure did not provide significantly better results than with plain MLPs.
 
 \svs
 
-The MLP-based approach manage excellent results, no matter the type of noise, especially with high levels of noise. It outperforms KSVD, NLSC, EPLL and BM3D on most of the test images. However, it achieves worst results than BM3D and NLSC on images with a lot of regular structures.
+The MLP-based approach reaches excellent results, especially with high levels of noise. It outperforms KSVD, NLSC, EPLL and BM3D on most of the test images. However, it achieves worst results than BM3D and NLSC on images with a lot of regular structures.
 
 \svs
 
-The results achieved by the MLP-based approach show that it is possible to significantly improve denoising quality on images with complex textures. Furthermore, it demonstrates that image priors are still useful at high noise levels. On bounds estimated for patches of infinite size, the method reaches half the theoretically possible gain over BM3D.
+The results obtained by the MLP-based approach show that it is possible to significantly improve denoising quality on images with complex textures. Furthermore, it demonstrates that image priors are still useful at high noise levels. On bounds estimated for patches of infinite size, the method reaches half the theoretically possible gain over BM3D.
 
 \svs
 
-Once adapted to other types of noise, the MLP-based algorithm achives good results and even seems to be competitive with the state-of-the-art on JPEG quantization artifacts and mixed Poisson-Gaussian noise.
+Once adapted to other types of noise, the MLP-based algorithm achieves good results and even seems to be competitive with the state-of-the-art on JPEG quantization artifacts and mixed Poisson-Gaussian noise.
 
 \svs
 
