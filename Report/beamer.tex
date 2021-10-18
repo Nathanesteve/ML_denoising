@@ -12,6 +12,8 @@
 \usetheme{Antibes}
 \usepackage{tabulary}
 
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata}
 
 
 \setbeamertemplate{footline}[frame number]
@@ -62,11 +64,122 @@
 
 \begin{frame}
 % Dessin de MLP + expliqué notion de patches (phase d'entrainement)
+
+% ----
+% Input layer neurons'number
+\newcommand{\inputnum}{3} 
+ 
+% Hidden layer neurons'number
+\newcommand{\hiddennum}{5}  
+ 
+% Output layer neurons'number
+\newcommand{\outputnum}{2} 
+
+% Input layer neurons'number
+\renewcommand{\inputnum}{1} 
+ 
+% Hidden layer neurons'number
+\renewcommand{\hiddennum}{5}  
+ 
+% Output layer neurons'number
+\renewcommand{\outputnum}{1} 
+% ----
+
+%\begin{center}
+\begin{figure}[h]% <--- '[h]' says "let figure be here"
+\begin{minipage}[c]{9.5cm}
+\resizebox{1\textwidth}{!}{% for a smaller picture
+\begin{tikzpicture}
+ 
+% Input Layer
+\foreach \i in {1,...,\inputnum}
+{
+    \node[circle, minimum size = 6mm, fill = orange!30] (Input-\i) at (0,-\i) {};
+}
+ 
+% Hidden Layer
+\foreach \i in {1,...,\hiddennum}
+{
+    \node[circle, minimum size = 6mm, fill=teal!50, yshift = (\hiddennum-\inputnum)*5 mm] (Hidden-\i) at (2.5,-\i) {};
+}
+
+% Hidden Layer
+\foreach \i in {1,...,\hiddennum}
+{
+    \node[circle, minimum size = 6mm, fill=teal!50, yshift = (\hiddennum-\inputnum)*5 mm] (Hiddenn-\i) at (5,-\i) {};
+}
+
+% Output Layer
+\foreach \i in {1,...,\outputnum}
+{
+    \node[circle, minimum size = 6mm, fill = purple!50, yshift = (\outputnum-\inputnum)*5 mm] (Output-\i) at (7.5,-\i) {};
+}
+ 
+% Connect neurons In-Hidden
+\foreach \i in {1,...,\inputnum}
+{
+    \foreach \j in {1,...,\hiddennum}
+    {
+        \draw[->, shorten >=1pt] (Input-\i) -- (Hidden-\j);   
+    }
+}
+ 
+% Connect neurons In-hidden-In-hiddenn
+\foreach \i in {1,...,\hiddennum}
+{
+    \foreach \j in {1,...,\hiddennum}
+    {
+        \draw[->, shorten >=1pt] (Hidden-\i) -- (Hiddenn-\j);   
+    }
+}
+
+% Connect neurons Hidden-Out
+\foreach \i in {1,...,\hiddennum}
+{
+    \foreach \j in {1,...,\outputnum}
+    {
+        \draw[->, shorten >=1pt] (Hiddenn-\i) -- (Output-\j);
+    }
+}
+ 
+% Inputs
+\foreach \i in {1,...,\inputnum}
+{            
+    \draw[<-, shorten <=1pt] (Input-\i) -- ++(-1,0) node[left]{$x_{noisy}$};
+}
+ 
+% Outputs
+\foreach \i in {1,...,\outputnum}
+{            
+    \draw[->, shorten <=1pt] (Output-\i) -- ++(1,0) node[right]{$f(x_{noisy})$};
+}
+
+
+%\node[above] at (0,0 |- 0,2.5) {Input layer}; (0,0 |- 0,2.5)
+%\node[above] at (0,0 |- 2.5,0) {Hidden layer 1};
+%\node[above] at (Hiddenn-1 |- Output-1) {Hidden layer 2};
+%\node[above] at (Output-1) {Output layer};
+%\node[above] at (Hidden-1 |- Hiddenn-1) {Hidden layer 1};
+%\node[above] at (Hiddenn-1 |- Output-1) {Hidden layer 2};
+%\node[above] at (Output-1) {Output layer};
+%\node[annot] at (I1 |- hl) {Input layer};
+%\node[annot] at (O1 |- hl) {Output layer};
+\end{tikzpicture}
+%\end{center}
+}% end reducing picture size
+\end{minipage}%
+\end{figure}
+
+\vspace{7pt}
+
+where $x_{noisy}$ is a noisy version of a patch $x$ and $f(x_{noisy})$ represents an estimate of $x$.
+
 \end{frame}
 
 
 \begin{frame}
 % Expliqué INPUT/OUTPUT + POIDS W + LOSS (SNR)
+
 \end{frame}
 
 \begin{frame}
