@@ -16,10 +16,13 @@
 
 \setbeamertemplate{footline}[frame number]
 
-\title{Débruitage d'image par l'utilisation d'un perceptron multi-couches}
+\title{Image denoising with multi-layer perceptrons}
 \author{VERNAY Amélie \\ FATTOUHY Mohamed \\ ESTEVE Nathan \\ NGUYEN Louis}
 
-\titlegraphic{\includegraphics[width=2.5cm,height=2.5cm]{../datasets/images/Logo_FDS.png}}
+\titlegraphic{\includegraphics[scale=0.22]{../datasets/images/Image_comparaison.png}}
+
+
+
 
 \AtBeginSection[]
 {
@@ -222,15 +225,60 @@ PSNR = $20 \times \log_{10}\left(\dfrac{m}{\sqrt{\mathrm{MSE}}} \right)$ (dB), w
 
 \begin{frame}{Results for AWG noise}
 \begin{block}{Definition}
-Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. %(Source: Wiki)
-% Présentez résultats images avec AWG noise (sigma=25)
+Additive white Gaussian noise (AWG) : Mimics the effect of many random processes that occur in nature. 
+%(Source: Wiki)
 \end{block} 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.40]{../datasets/images/barbara.png}
+        \caption{Comparaison BM3D and MLP (AWG noise $\sigma = 25 $)}
+    \end{center}
+\end{figure}
+    
+
+
+
 \end{frame}
 
 
 \begin{frame}{Other type of noise}
-% Présentez résultats images pour autres bruits (faire plusieurs slides)
+We begin by Strip noise, see result of denoising with BM3D and MLP.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.45]{../datasets/images/stripnoise.png}
+        \caption{MLP and BM3D denoising strip noise}
+    \end{center}
+\end{figure}
 \end{frame}
+
+
+
+\begin{frame}{Other type of noise}
+For Salt and pepper noise, we compare MLP with median filtering methode. This method was the stat-of-the-art for this type of noise.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.45]{../datasets/images/saltandpeppernoise.png}
+        \caption{MLP and median filtering denoising salt and pepper noise}
+    \end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Other type of noise}
+    For JPEG articact, we compare MLP againt the state-of-the-art. 
+
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[scale=0.45]{../datasets/images/Jpgegnoise.png}
+            \caption{MLP JPEG Artifact}
+        \end{center}
+    \end{figure}
+    
+    \end{frame}
+
+
 
 \section{Bounds}
 
